@@ -24,6 +24,10 @@ var MiniAdpter=(function(){
 		MiniAdpter.isZiYu=isSon;
 		MiniAdpter.isPosMsgYu=isPosMsg;
 		MiniAdpter.EnvConfig={};
+		try{
+			/*__JS__ */laya.webgl.resource.WebGLCanvas.premulAlpha=true;
+			}catch(e){
+		}
 		if(!MiniAdpter.isZiYu){
 			MiniFileMgr.setNativeFileDir("/layaairGame");
 			MiniFileMgr.existDir(MiniFileMgr.fileNativeDir,Handler.create(MiniAdpter,MiniAdpter.onMkdirCallBack));
@@ -641,10 +645,10 @@ var MiniInput=(function(){
 			Browser.onIPhone=true;
 			Browser.onIOS=true;
 			Browser.onIPad=true;
-			Browser.onAndriod=false;
+			Browser.onAndroid=false;
 		}
 		if(system.indexOf("Android")!=-1 || system.indexOf("Adr")!=-1){
-			Browser.onAndriod=true;
+			Browser.onAndroid=true;
 			Browser.onIPhone=false;
 			Browser.onIOS=false;
 			Browser.onIPad=false;

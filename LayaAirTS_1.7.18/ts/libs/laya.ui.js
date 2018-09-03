@@ -9,8 +9,8 @@
 	var Render=laya.renders.Render,Sprite=laya.display.Sprite,Text=laya.display.Text,Texture=laya.resource.Texture;
 	var Tween=laya.utils.Tween,Utils=laya.utils.Utils,WeakObject=laya.utils.WeakObject;
 Laya.interface('laya.ui.IItem');
-Laya.interface('laya.ui.ISelect');
 Laya.interface('laya.ui.IRender');
+Laya.interface('laya.ui.ISelect');
 Laya.interface('laya.ui.IComponent');
 Laya.interface('laya.ui.IBox','IComponent');
 /**

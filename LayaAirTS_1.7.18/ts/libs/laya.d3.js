@@ -487,6 +487,20 @@ var AnimationNode=(function(){
 		AnimationNode.registerAnimationNodeProperty("skinnedMeshRender.sharedMaterial.albedoColor",AnimationNode._getSkinnedMeshRenderSharedMaterialAlbedo,AnimationNode._setSkinnedMeshRenderSharedMaterialAlbedo);
 		AnimationNode.registerAnimationNodeProperty("meshRender.sharedMaterial.albedo",AnimationNode._getMeshRenderSharedMaterialAlbedo,AnimationNode._setMeshRenderSharedMaterialAlbedo);
 		AnimationNode.registerAnimationNodeProperty("skinnedMeshRender.sharedMaterial.albedo",AnimationNode._getSkinnedMeshRenderSharedMaterialAlbedo,AnimationNode._setSkinnedMeshRenderSharedMaterialAlbedo);
+		AnimationNode.registerAnimationNodeProperty("meshRender.sharedMaterial.intensity",AnimationNode._getMeshRenderSharedMaterialIntensity,AnimationNode._setMeshRenderSharedMaterialIntensity);
+		AnimationNode.registerAnimationNodeProperty("meshRender.sharedMaterial.alpha",AnimationNode._getMeshRenderSharedMaterialAlpha,AnimationNode._setMeshRenderSharedMaterialAlpha);
+		AnimationNode.registerAnimationNodeProperty("meshRender.sharedMaterial.alphaColor",AnimationNode._getMeshRenderSharedMaterialAlphaColor,AnimationNode._setMeshRenderSharedMaterialAlphaColor);
+		AnimationNode.registerAnimationNodeProperty("meshRender.sharedMaterial.baseColor",AnimationNode._getMeshRenderSharedMaterialBaseColor,AnimationNode._setMeshRenderSharedMaterialBaseColor);
+		AnimationNode.registerAnimationNodeProperty("meshRender.sharedMaterial.dissolve",AnimationNode._getMeshRenderSharedMaterialDissolve,AnimationNode._setMeshRenderSharedMaterialDissolve);
+		AnimationNode.registerAnimationNodeProperty("meshRender.sharedMaterial.dissolveSpeed",AnimationNode._getMeshRenderSharedMaterialDissolveSpeed,AnimationNode._setMeshRenderSharedMaterialDissolveSpeed);
+		AnimationNode.registerAnimationNodeProperty("meshRender.sharedMaterial.mMultiplier",AnimationNode._getMeshRenderSharedMaterialMMultiplier,AnimationNode._setMeshRenderSharedMaterialMMultiplier);
+		AnimationNode.registerAnimationNodeProperty("meshRender.sharedMaterial.baseScrollSpeedX",AnimationNode._getMeshRenderSharedMaterialBaseScrollSpeedX,AnimationNode._setMeshRenderSharedMaterialBaseScrollSpeedX);
+		AnimationNode.registerAnimationNodeProperty("meshRender.sharedMaterial.baseScrollSpeedY",AnimationNode._getMeshRenderSharedMaterialBaseScrollSpeedY,AnimationNode._setMeshRenderSharedMaterialBaseScrollSpeedY);
+		AnimationNode.registerAnimationNodeProperty("meshRender.sharedMaterial.secondScrollSpeedX",AnimationNode._getMeshRenderSharedMaterialSecondScrollSpeedX,AnimationNode._setMeshRenderSharedMaterialSecondScrollSpeedX);
+		AnimationNode.registerAnimationNodeProperty("meshRender.sharedMaterial.secondScrollSpeedY",AnimationNode._getMeshRenderSharedMaterialSecondScrollSpeedY,AnimationNode._setMeshRenderSharedMaterialSecondScrollSpeedY);
+		AnimationNode.registerAnimationNodeProperty("meshRender.sharedMaterial.detailTilingOffset",AnimationNode._getMeshRenderSharedMaterialDetailTilingOffset,AnimationNode._setMeshRenderSharedMaterialDetailTilingOffset);
+		AnimationNode.registerAnimationNodeProperty("meshRender.sharedMaterial.dissolveTilingOffset",AnimationNode._getMeshRenderSharedMaterialDissolveTilingOffset,AnimationNode._setMeshRenderSharedMaterialDissolveTilingOffset);
+		AnimationNode.registerAnimationNodeProperty("meshRender.sharedMaterial.maskTilingOffset",AnimationNode._getMeshRenderSharedMaterialMaskTilingOffset,AnimationNode._setMeshRenderSharedMaterialMaskTilingOffset);
 	}
 
 	AnimationNode.registerAnimationNodeProperty=function(propertyName,getFunc,setFunc){
@@ -735,6 +749,432 @@ var AnimationNode=(function(){
 			tintColor=material.tintColor;
 			tintColor.elements=value;
 			material.tintColor=tintColor;
+		}
+	}
+
+	AnimationNode._getMeshRenderSharedMaterialAlphaColor=function(animationNode,sprite3D){
+		var material;
+		if (animationNode){
+			var entity=animationNode.transform._entity;
+			if (entity){
+				material=(entity.owner).meshRender.sharedMaterial;
+				return material.alphaColor.elements;
+			}else
+			return null;
+			}else {
+			material=(sprite3D).meshRender.sharedMaterial;
+			return material.alphaColor.elements;
+		}
+	}
+
+	AnimationNode._setMeshRenderSharedMaterialAlphaColor=function(animationNode,sprite3D,value){
+		var material,alphaColor;
+		if (animationNode){
+			var entity=animationNode.transform._entity;
+			if (entity){
+				material=(entity.owner).meshRender.material;
+				alphaColor=material.alphaColor;
+				alphaColor.elements=value;
+				material.alphaColor=alphaColor;
+			}
+			}else {
+			material=(sprite3D).meshRender.material;
+			alphaColor=material.alphaColor;
+			alphaColor.elements=value;
+			material.alphaColor=alphaColor;
+		}
+	}
+
+	AnimationNode._getMeshRenderSharedMaterialBaseColor=function(animationNode,sprite3D){
+		var material;
+		if (animationNode){
+			var entity=animationNode.transform._entity;
+			if (entity){
+				material=(entity.owner).meshRender.sharedMaterial;
+				return material.baseColor.elements;
+			}else
+			return null;
+			}else {
+			material=(sprite3D).meshRender.sharedMaterial;
+			return material.baseColor.elements;
+		}
+	}
+
+	AnimationNode._setMeshRenderSharedMaterialBaseColor=function(animationNode,sprite3D,value){
+		var material,baseColor;
+		if (animationNode){
+			var entity=animationNode.transform._entity;
+			if (entity){
+				material=(entity.owner).meshRender.material;
+				baseColor=material.baseColor;
+				baseColor.elements=value;
+				material.baseColor=baseColor;
+			}
+			}else {
+			material=(sprite3D).meshRender.material;
+			baseColor=material.baseColor;
+			baseColor.elements=value;
+			material.baseColor=baseColor;
+		}
+	}
+
+	AnimationNode._getMeshRenderSharedMaterialDissolve=function(animationNode,sprite3D){
+		var material;
+		if (animationNode){
+			var entity=animationNode.transform._entity;
+			if (entity){
+				material=(entity.owner).meshRender.sharedMaterial;
+				return material.dissolve;
+			}else
+			return 0.0;
+			}else {
+			material=(sprite3D).meshRender.sharedMaterial;
+			return material.dissolve;
+		}
+	}
+
+	AnimationNode._setMeshRenderSharedMaterialDissolve=function(animationNode,sprite3D,value){
+		var material;
+		if (animationNode){
+			var entity=animationNode.transform._entity;
+			if (entity){
+				material=(entity.owner).meshRender.material;
+				material.dissolve=value[0];
+			}
+			}else {
+			material=(sprite3D).meshRender.material;
+			material.dissolve=value[0];
+		}
+	}
+
+	AnimationNode._getMeshRenderSharedMaterialDissolveSpeed=function(animationNode,sprite3D){
+		var material;
+		if (animationNode){
+			var entity=animationNode.transform._entity;
+			if (entity){
+				material=(entity.owner).meshRender.sharedMaterial;
+				return material.dissolveSpeed;
+			}else
+			return 0.0;
+			}else {
+			material=(sprite3D).meshRender.sharedMaterial;
+			return material.dissolveSpeed;
+		}
+	}
+
+	AnimationNode._setMeshRenderSharedMaterialDissolveSpeed=function(animationNode,sprite3D,value){
+		var material;
+		if (animationNode){
+			var entity=animationNode.transform._entity;
+			if (entity){
+				material=(entity.owner).meshRender.material;
+				material.dissolveSpeed=value[0];
+			}
+			}else {
+			material=(sprite3D).meshRender.material;
+			material.dissolveSpeed=value[0];
+		}
+	}
+
+	AnimationNode._getMeshRenderSharedMaterialMMultiplier=function(animationNode,sprite3D){
+		var material;
+		if (animationNode){
+			var entity=animationNode.transform._entity;
+			if (entity){
+				material=(entity.owner).meshRender.sharedMaterial;
+				return material.mMultiplier;
+			}else
+			return 0.0;
+			}else {
+			material=(sprite3D).meshRender.sharedMaterial;
+			return material.mMultiplier;
+		}
+	}
+
+	AnimationNode._setMeshRenderSharedMaterialMMultiplier=function(animationNode,sprite3D,value){
+		var material;
+		if (animationNode){
+			var entity=animationNode.transform._entity;
+			if (entity){
+				material=(entity.owner).meshRender.material;
+				material.mMultiplier=value[0];
+			}
+			}else {
+			material=(sprite3D).meshRender.material;
+			material.mMultiplier=value[0];
+		}
+	}
+
+	AnimationNode._getMeshRenderSharedMaterialBaseScrollSpeedX=function(animationNode,sprite3D){
+		var material;
+		if (animationNode){
+			var entity=animationNode.transform._entity;
+			if (entity){
+				material=(entity.owner).meshRender.sharedMaterial;
+				return material.baseScrollSpeedX;
+			}else
+			return 0.0;
+			}else {
+			material=(sprite3D).meshRender.sharedMaterial;
+			return material.baseScrollSpeedX;
+		}
+	}
+
+	AnimationNode._setMeshRenderSharedMaterialBaseScrollSpeedX=function(animationNode,sprite3D,value){
+		var material;
+		if (animationNode){
+			var entity=animationNode.transform._entity;
+			if (entity){
+				material=(entity.owner).meshRender.material;
+				material.baseScrollSpeedX=value[0];
+			}
+			}else {
+			material=(sprite3D).meshRender.material;
+			material.baseScrollSpeedX=value[0];
+		}
+	}
+
+	AnimationNode._getMeshRenderSharedMaterialBaseScrollSpeedY=function(animationNode,sprite3D){
+		var material;
+		if (animationNode){
+			var entity=animationNode.transform._entity;
+			if (entity){
+				material=(entity.owner).meshRender.sharedMaterial;
+				return material.baseScrollSpeedY;
+			}else
+			return 0.0;
+			}else {
+			material=(sprite3D).meshRender.sharedMaterial;
+			return material.baseScrollSpeedY;
+		}
+	}
+
+	AnimationNode._setMeshRenderSharedMaterialBaseScrollSpeedY=function(animationNode,sprite3D,value){
+		var material;
+		if (animationNode){
+			var entity=animationNode.transform._entity;
+			if (entity){
+				material=(entity.owner).meshRender.material;
+				material.baseScrollSpeedY=value[0];
+			}
+			}else {
+			material=(sprite3D).meshRender.material;
+			material.baseScrollSpeedY=value[0];
+		}
+	}
+
+	AnimationNode._getMeshRenderSharedMaterialSecondScrollSpeedX=function(animationNode,sprite3D){
+		var material;
+		if (animationNode){
+			var entity=animationNode.transform._entity;
+			if (entity){
+				material=(entity.owner).meshRender.sharedMaterial;
+				return material.secondScrollSpeedX;
+			}else
+			return 0.0;
+			}else {
+			material=(sprite3D).meshRender.sharedMaterial;
+			return material.secondScrollSpeedX;
+		}
+	}
+
+	AnimationNode._setMeshRenderSharedMaterialSecondScrollSpeedX=function(animationNode,sprite3D,value){
+		var material;
+		if (animationNode){
+			var entity=animationNode.transform._entity;
+			if (entity){
+				material=(entity.owner).meshRender.material;
+				material.secondScrollSpeedX=value[0];
+			}
+			}else {
+			material=(sprite3D).meshRender.material;
+			material.secondScrollSpeedX=value[0];
+		}
+	}
+
+	AnimationNode._getMeshRenderSharedMaterialSecondScrollSpeedY=function(animationNode,sprite3D){
+		var material;
+		if (animationNode){
+			var entity=animationNode.transform._entity;
+			if (entity){
+				material=(entity.owner).meshRender.sharedMaterial;
+				return material.secondScrollSpeedY;
+			}else
+			return 0.0;
+			}else {
+			material=(sprite3D).meshRender.sharedMaterial;
+			return material.secondScrollSpeedY;
+		}
+	}
+
+	AnimationNode._setMeshRenderSharedMaterialSecondScrollSpeedY=function(animationNode,sprite3D,value){
+		var material;
+		if (animationNode){
+			var entity=animationNode.transform._entity;
+			if (entity){
+				material=(entity.owner).meshRender.material;
+				material.secondScrollSpeedY=value[0];
+			}
+			}else {
+			material=(sprite3D).meshRender.material;
+			material.secondScrollSpeedY=value[0];
+		}
+	}
+
+	AnimationNode._getMeshRenderSharedMaterialAlpha=function(animationNode,sprite3D){
+		var material;
+		if (animationNode){
+			var entity=animationNode.transform._entity;
+			if (entity){
+				material=(entity.owner).meshRender.sharedMaterial;
+				return material.alpha;
+			}else
+			return 0.0;
+			}else {
+			material=(sprite3D).meshRender.sharedMaterial;
+			return material.alpha;
+		}
+	}
+
+	AnimationNode._setMeshRenderSharedMaterialAlpha=function(animationNode,sprite3D,value){
+		var material;
+		if (animationNode){
+			var entity=animationNode.transform._entity;
+			if (entity){
+				material=(entity.owner).meshRender.material;
+				material.alpha=value[0];
+			}
+			}else {
+			material=(sprite3D).meshRender.material;
+			material.alpha=value[0];
+		}
+	}
+
+	AnimationNode._getMeshRenderSharedMaterialIntensity=function(animationNode,sprite3D){
+		var material;
+		if (animationNode){
+			var entity=animationNode.transform._entity;
+			if (entity){
+				material=(entity.owner).meshRender.sharedMaterial;
+				return material.intensity;
+			}else
+			return 0.0;
+			}else {
+			material=(sprite3D).meshRender.sharedMaterial;
+			return material.intensity;
+		}
+	}
+
+	AnimationNode._setMeshRenderSharedMaterialIntensity=function(animationNode,sprite3D,value){
+		var material;
+		if (animationNode){
+			var entity=animationNode.transform._entity;
+			if (entity){
+				material=(entity.owner).meshRender.material;
+				material.intensity=value[0];
+			}
+			}else {
+			material=(sprite3D).meshRender.material;
+			material.intensity=value[0];
+		}
+	}
+
+	AnimationNode._getMeshRenderSharedMaterialDetailTilingOffset=function(animationNode,sprite3D){
+		var material;
+		if (animationNode){
+			var entity=animationNode.transform._entity;
+			if (entity){
+				material=(entity.owner).meshRender.sharedMaterial;
+				return material.detailTilingOffset.elements;
+			}else
+			return null;
+			}else {
+			material=(sprite3D).meshRender.sharedMaterial;
+			return material.detailTilingOffset.elements;
+		}
+	}
+
+	AnimationNode._setMeshRenderSharedMaterialDetailTilingOffset=function(animationNode,sprite3D,value){
+		var material,detailTilingOffset;
+		if (animationNode){
+			var entity=animationNode.transform._entity;
+			if (entity){
+				material=(entity.owner).meshRender.material;
+				detailTilingOffset=material.detailTilingOffset;
+				detailTilingOffset.elements=value;
+				material.detailTilingOffset=detailTilingOffset;
+			}
+			}else {
+			material=(sprite3D).meshRender.material;
+			detailTilingOffset=material.detailTilingOffset;
+			detailTilingOffset.elements=value;
+			material.detailTilingOffset=detailTilingOffset;
+		}
+	}
+
+	AnimationNode._getMeshRenderSharedMaterialDissolveTilingOffset=function(animationNode,sprite3D){
+		var material;
+		if (animationNode){
+			var entity=animationNode.transform._entity;
+			if (entity){
+				material=(entity.owner).meshRender.sharedMaterial;
+				return material.dissolveTilingOffset.elements;
+			}else
+			return null;
+			}else {
+			material=(sprite3D).meshRender.sharedMaterial;
+			return material.dissolveTilingOffset.elements;
+		}
+	}
+
+	AnimationNode._setMeshRenderSharedMaterialDissolveTilingOffset=function(animationNode,sprite3D,value){
+		var material,dissolveTilingOffset;
+		if (animationNode){
+			var entity=animationNode.transform._entity;
+			if (entity){
+				material=(entity.owner).meshRender.material;
+				dissolveTilingOffset=material.dissolveTilingOffset;
+				dissolveTilingOffset.elements=value;
+				material.dissolveTilingOffset=dissolveTilingOffset;
+			}
+			}else {
+			material=(sprite3D).meshRender.material;
+			dissolveTilingOffset=material.dissolveTilingOffset;
+			dissolveTilingOffset.elements=value;
+			material.dissolveTilingOffset=dissolveTilingOffset;
+		}
+	}
+
+	AnimationNode._getMeshRenderSharedMaterialMaskTilingOffset=function(animationNode,sprite3D){
+		var material;
+		if (animationNode){
+			var entity=animationNode.transform._entity;
+			if (entity){
+				material=(entity.owner).meshRender.sharedMaterial;
+				return material.maskTilingOffset.elements;
+			}else
+			return null;
+			}else {
+			material=(sprite3D).meshRender.sharedMaterial;
+			return material.maskTilingOffset.elements;
+		}
+	}
+
+	AnimationNode._setMeshRenderSharedMaterialMaskTilingOffset=function(animationNode,sprite3D,value){
+		var material,maskTilingOffset;
+		if (animationNode){
+			var entity=animationNode.transform._entity;
+			if (entity){
+				material=(entity.owner).meshRender.material;
+				maskTilingOffset=material.maskTilingOffset;
+				maskTilingOffset.elements=value;
+				material.maskTilingOffset=maskTilingOffset;
+			}
+			}else {
+			material=(sprite3D).meshRender.material;
+			maskTilingOffset=material.maskTilingOffset;
+			maskTilingOffset.elements=value;
+			material.maskTilingOffset=maskTilingOffset;
 		}
 	}
 
@@ -4292,16 +4732,27 @@ var RenderQueue=(function(){
 	__class(RenderQueue,'laya.d3.core.render.RenderQueue');
 	var __proto=RenderQueue.prototype;
 	__proto._sortOpaqueFunc=function(a,b){
-		if (a._render && b._render)
-			return a._render._distanceForSort-b._render._distanceForSort;
-		else
-		return 0;
+		if (a._render && b._render){
+			var renderQueue=a._material.renderQueue-b._material.renderQueue;
+			if (renderQueue===0){
+				return a._render._distanceForSort-b._render._distanceForSort;
+				}else {
+				return renderQueue
+			}
+			}else {
+			return 0;
+		}
 	}
 
 	__proto._sortAlphaFunc=function(a,b){
-		if (a._render && b._render)
-			return b._render._distanceForSort-a._render._distanceForSort;
-		else
+		if (a._render && b._render){
+			var renderQueue=a._material.renderQueue-b._material.renderQueue;
+			if (renderQueue===0){
+				return b._render._distanceForSort-a._render._distanceForSort;
+				}else {
+				return renderQueue;
+			}
+		}else
 		return 0;
 	}
 
@@ -4565,8 +5016,6 @@ var RenderQueue=(function(){
 	});
 
 	RenderQueue._uniqueIDCounter=0;
-	RenderQueue.OPAQUE=1;
-	RenderQueue.TRANSPARENT=2;
 	RenderQueue._cameraPosition=null;
 	return RenderQueue;
 })()
@@ -5125,7 +5574,7 @@ var GradientColorKey=(function(){
 		this._color=null;
 		this._time=NaN;
 		(time===void 0)&& (time=0);
-		this._color=color|| new Color$1();
+		this._color=color||new Color$1();
 		this._time=time;
 	}
 
@@ -15233,7 +15682,6 @@ var ShaderInit3D=(function(){
 			'u_ReflectTexture':[ /*laya.d3.core.material.BlinnPhongMaterial.REFLECTTEXTURE*/5,/*laya.d3.shader.Shader3D.PERIOD_MATERIAL*/1],
 			'u_AlphaTestValue':[ /*laya.d3.core.material.BaseMaterial.ALPHATESTVALUE*/0,/*laya.d3.shader.Shader3D.PERIOD_MATERIAL*/1],
 			'u_DiffuseColor':[ /*laya.d3.core.material.BlinnPhongMaterial.ALBEDOCOLOR*/6,/*laya.d3.shader.Shader3D.PERIOD_MATERIAL*/1],
-			'u_GlowingEdgeColor':[ /*laya.d3.core.material.BlinnPhongMaterial.GLOWINGEDGECOLOR*/12,/*laya.d3.shader.Shader3D.PERIOD_MATERIAL*/1],
 			'u_MaterialSpecular':[ /*laya.d3.core.material.BlinnPhongMaterial.MATERIALSPECULAR*/8,/*laya.d3.shader.Shader3D.PERIOD_MATERIAL*/1],
 			'u_Shininess':[ /*laya.d3.core.material.BlinnPhongMaterial.SHININESS*/9,/*laya.d3.shader.Shader3D.PERIOD_MATERIAL*/1],
 			'u_MaterialReflect':[ /*laya.d3.core.material.BlinnPhongMaterial.MATERIALREFLECT*/10,/*laya.d3.shader.Shader3D.PERIOD_MATERIAL*/1],
@@ -15265,7 +15713,7 @@ var ShaderInit3D=(function(){
 			'u_shadowPCFoffset':[ /*laya.d3.core.scene.Scene.SHADOWMAPPCFOFFSET*/17,/*laya.d3.shader.Shader3D.PERIOD_SCENE*/4]};
 		var BLINNPHONG=Shader3D.nameKey.add("BLINNPHONG");
 		vs="attribute vec4 a_Position;\nuniform mat4 u_MvpMatrix;\n\n#if defined(DIFFUSEMAP)||((defined(DIRECTIONLIGHT)||defined(POINTLIGHT)||defined(SPOTLIGHT))&&(defined(SPECULARMAP)||defined(NORMALMAP)))||(defined(LIGHTMAP)&&defined(UV))\n	attribute vec2 a_Texcoord0;\n	varying vec2 v_Texcoord0;\n#endif\n\n#if defined(LIGHTMAP)&&defined(UV1)\n	attribute vec2 a_Texcoord1;\n#endif\n\n#ifdef LIGHTMAP\n	uniform vec4 u_LightmapScaleOffset;\n	varying vec2 v_LightMapUV;\n#endif\n\n#ifdef COLOR\n	attribute vec4 a_Color;\n	varying vec4 v_Color;\n#endif\n\n#ifdef BONE\n	const int c_MaxBoneCount = 24;\n	attribute vec4 a_BoneIndices;\n	attribute vec4 a_BoneWeights;\n	uniform mat4 u_Bones[c_MaxBoneCount];\n#endif\n\n#if defined(DIRECTIONLIGHT)||defined(POINTLIGHT)||defined(SPOTLIGHT)||defined(REFLECTMAP)\n	attribute vec3 a_Normal;\n	varying vec3 v_Normal; \n#endif\n\n#if defined(DIRECTIONLIGHT)||defined(POINTLIGHT)||defined(SPOTLIGHT)||defined(REFLECTMAP)\n	uniform vec3 u_CameraPos;\n	varying vec3 v_ViewDir; \n#endif\n\n#if (defined(DIRECTIONLIGHT)||defined(POINTLIGHT)||defined(SPOTLIGHT)||defined(REFLECTMAP))&&defined(NORMALMAP)\n	attribute vec4 a_Tangent0;\n	varying vec3 v_Tangent;\n	varying vec3 v_Binormal;\n#endif\n\n#if defined(DIRECTIONLIGHT)||defined(POINTLIGHT)||defined(SPOTLIGHT)||defined(REFLECTMAP)||defined(RECEIVESHADOW)\n	uniform mat4 u_WorldMat;\n	varying vec3 v_PositionWorld;\n#endif\n\nvarying float v_posViewZ;\n#ifdef RECEIVESHADOW\n  #ifdef SHADOWMAP_PSSM1 \n  varying vec4 v_lightMVPPos;\n  uniform mat4 u_lightShadowVP[4];\n  #endif\n#endif\n\n#ifdef TILINGOFFSET\n	uniform vec4 u_TilingOffset;\n#endif\n\nvoid main_castShadow()\n{\n	#ifdef BONE\n		mat4 skinTransform=mat4(0.0);\n		skinTransform += u_Bones[int(a_BoneIndices.x)] * a_BoneWeights.x;\n		skinTransform += u_Bones[int(a_BoneIndices.y)] * a_BoneWeights.y;\n		skinTransform += u_Bones[int(a_BoneIndices.z)] * a_BoneWeights.z;\n		skinTransform += u_Bones[int(a_BoneIndices.w)] * a_BoneWeights.w;\n		vec4 position=skinTransform*a_Position;\n		gl_Position = u_MvpMatrix * position;\n	#else\n		gl_Position = u_MvpMatrix * a_Position;\n	#endif\n	 \n	//TODO没考虑UV动画呢\n	#if defined(DIFFUSEMAP)&&defined(ALPHATEST)\n		v_Texcoord0=a_Texcoord0;\n	#endif\n		v_posViewZ = gl_Position.z;\n}\n\nvoid main_normal()\n{\n	#ifdef BONE\n		mat4 skinTransform=mat4(0.0);\n		skinTransform += u_Bones[int(a_BoneIndices.x)] * a_BoneWeights.x;\n		skinTransform += u_Bones[int(a_BoneIndices.y)] * a_BoneWeights.y;\n		skinTransform += u_Bones[int(a_BoneIndices.z)] * a_BoneWeights.z;\n		skinTransform += u_Bones[int(a_BoneIndices.w)] * a_BoneWeights.w;\n		vec4 position=skinTransform*a_Position;\n		gl_Position = u_MvpMatrix * position;\n	#else\n		gl_Position = u_MvpMatrix * a_Position;\n	#endif\n\n	#if defined(DIRECTIONLIGHT)||defined(POINTLIGHT)||defined(SPOTLIGHT)||defined(REFLECTMAP)\n		mat3 worldMat;\n		#ifdef BONE\n			worldMat=mat3(u_WorldMat*skinTransform);\n		#else\n			worldMat=mat3(u_WorldMat);\n		#endif  \n		v_Normal=worldMat*a_Normal;//TODO:法线可以用\"魔法\"矩阵\n		#if (defined(DIRECTIONLIGHT)||defined(POINTLIGHT)||defined(SPOTLIGHT))&&defined(NORMALMAP)\n			v_Tangent=worldMat*a_Tangent0.xyz;\n			v_Binormal=cross(v_Normal,v_Tangent)*a_Tangent0.w;\n		#endif\n	#endif\n\n	#if defined(DIRECTIONLIGHT)||defined(POINTLIGHT)||defined(SPOTLIGHT)||defined(REFLECTMAP)||defined(RECEIVESHADOW)\n		#ifdef BONE\n			v_PositionWorld=(u_WorldMat*position).xyz;\n		#else\n			v_PositionWorld=(u_WorldMat*a_Position).xyz;\n		#endif\n	#endif\n	\n	#if defined(DIRECTIONLIGHT)||defined(POINTLIGHT)||defined(SPOTLIGHT)||defined(REFLECTMAP)\n		v_ViewDir=u_CameraPos-v_PositionWorld;\n	#endif\n\n	#if defined(DIFFUSEMAP)||((defined(DIRECTIONLIGHT)||defined(POINTLIGHT)||defined(SPOTLIGHT))&&(defined(SPECULARMAP)||defined(NORMALMAP)))\n		v_Texcoord0=a_Texcoord0;\n		#ifdef TILINGOFFSET\n			v_Texcoord0=(vec2(v_Texcoord0.x,v_Texcoord0.y-1.0)*u_TilingOffset.xy)+u_TilingOffset.zw;\n			v_Texcoord0=vec2(v_Texcoord0.x,1.0+v_Texcoord0.y);\n		#endif\n	#endif\n\n	#ifdef LIGHTMAP\n		#ifdef SCALEOFFSETLIGHTINGMAPUV\n			#ifdef UV1\n				v_LightMapUV=vec2(a_Texcoord1.x*u_LightmapScaleOffset.x+u_LightmapScaleOffset.z,1.0+a_Texcoord1.y*u_LightmapScaleOffset.y+u_LightmapScaleOffset.w);\n			#else\n				v_LightMapUV=vec2(a_Texcoord0.x,a_Texcoord0.y-1.0)*u_LightmapScaleOffset.xy+u_LightmapScaleOffset.zw;\n			#endif \n		#else\n			#ifdef UV1\n				v_LightMapUV=a_Texcoord1;\n			#else\n				v_LightMapUV=a_Texcoord0;\n			#endif \n		#endif \n	#endif\n\n	#ifdef COLOR\n		v_Color=a_Color;\n	#endif\n\n	#ifdef RECEIVESHADOW\n		v_posViewZ = gl_Position.w;\n		#ifdef SHADOWMAP_PSSM1 \n			v_lightMVPPos = u_lightShadowVP[0] * vec4(v_PositionWorld,1.0);\n		#endif\n	#endif\n}\n\nvoid main()\n{\n	#ifdef CASTSHADOW\n		main_castShadow();\n	#else\n		main_normal();\n	#endif\n}";
-		ps="#ifdef HIGHPRECISION\n	precision highp float;\n#else\n	precision mediump float;\n#endif\n\n#include \"Lighting.glsl\";\n\nuniform vec4 u_DiffuseColor;\n\n#ifdef COLOR\n	varying vec4 v_Color;\n#endif\n\n#if defined(DIRECTIONLIGHT)||defined(POINTLIGHT)||defined(SPOTLIGHT)||defined(REFLECTMAP)||defined(GLOWINGEDGE)\n	varying vec3 v_ViewDir; \n#endif\n\n#ifdef ALPHATEST\n	uniform float u_AlphaTestValue;\n#endif\n\n#ifdef DIFFUSEMAP\n	uniform sampler2D u_DiffuseTexture;\n#endif\n\n#ifdef REFLECTMAP\n	uniform samplerCube u_ReflectTexture;\n	uniform vec3 u_MaterialReflect;\n#endif\n\n#if defined(DIFFUSEMAP)||((defined(DIRECTIONLIGHT)||defined(POINTLIGHT)||defined(SPOTLIGHT))&&(defined(SPECULARMAP)||defined(NORMALMAP)))\n	varying vec2 v_Texcoord0;\n#endif\n\n#ifdef LIGHTMAP\n	varying vec2 v_LightMapUV;\n	uniform sampler2D u_LightMap;\n#endif\n\n#if defined(DIRECTIONLIGHT)||defined(POINTLIGHT)||defined(SPOTLIGHT)\n	uniform vec3 u_MaterialSpecular;\n	uniform float u_Shininess;\n	#ifdef SPECULARMAP \n		uniform sampler2D u_SpecularTexture;\n	#endif\n#endif\n\n#ifdef FOG\n	uniform float u_FogStart;\n	uniform float u_FogRange;\n	#ifdef ADDTIVEFOG\n	#else\n		uniform vec3 u_FogColor;\n	#endif\n#endif\n\n\n#if defined(DIRECTIONLIGHT)||defined(POINTLIGHT)||defined(SPOTLIGHT)||defined(REFLECTMAP)||defined(GLOWINGEDGE)\n	varying vec3 v_Normal;\n#endif\n\n#if (defined(DIRECTIONLIGHT)||defined(POINTLIGHT)||defined(SPOTLIGHT))&&defined(NORMALMAP)\n	uniform sampler2D u_NormalTexture;\n	varying vec3 v_Tangent;\n	varying vec3 v_Binormal;\n#endif\n\n#if defined(DIRECTIONLIGHT)||defined(GLOWINGEDGE)\n	uniform DirectionLight u_DirectionLight;\n#endif\n\n#ifdef POINTLIGHT\n	uniform PointLight u_PointLight;\n#endif\n\n#ifdef SPOTLIGHT\n	uniform SpotLight u_SpotLight;\n#endif\n\nuniform vec3 u_AmbientColor;\n\n\n#if defined(POINTLIGHT)||defined(SPOTLIGHT)||defined(REFLECTMAP)||defined(RECEIVESHADOW)\n	varying vec3 v_PositionWorld;\n#endif\n\n#include \"ShadowHelper.glsl\"\nvarying float v_posViewZ;\n#ifdef RECEIVESHADOW\n	#if defined(SHADOWMAP_PSSM2)||defined(SHADOWMAP_PSSM3)\n		uniform mat4 u_lightShadowVP[4];\n	#endif\n	#ifdef SHADOWMAP_PSSM1 \n		varying vec4 v_lightMVPPos;\n	#endif\n#endif\n\n#ifdef GLOWINGEDGE\n	uniform vec4 u_GlowingEdgeColor;\n#endif\n\nvoid main_castShadow()\n{\n	//gl_FragColor=vec4(v_posViewZ,0.0,0.0,1.0);\n	gl_FragColor=packDepth(v_posViewZ);\n	#if defined(DIFFUSEMAP)&&defined(ALPHATEST)\n		float alpha = texture2D(u_DiffuseTexture,v_Texcoord0).w;\n		if( alpha < u_AlphaTestValue )\n		{\n			discard;\n		}\n	#endif\n}\nvoid main_normal()\n{\n	vec4 mainColor=u_DiffuseColor;\n	#ifdef DIFFUSEMAP\n		vec4 difTexColor=texture2D(u_DiffuseTexture, v_Texcoord0);\n		mainColor=mainColor*difTexColor;\n	#endif \n	#ifdef COLOR\n		mainColor=mainColor*v_Color;\n	#endif \n    \n	#ifdef ALPHATEST\n		if(mainColor.a<u_AlphaTestValue)\n			discard;\n	#endif\n  \n	#if defined(DIRECTIONLIGHT)||defined(POINTLIGHT)||defined(SPOTLIGHT)||defined(REFLECTMAP)||defined(GLOWINGEDGE)\n		vec3 normal;\n		#if (defined(DIRECTIONLIGHT)||defined(POINTLIGHT)||defined(SPOTLIGHT))&&defined(NORMALMAP)\n			vec3 normalMapSample = texture2D(u_NormalTexture, v_Texcoord0).rgb;\n			normal = normalize(NormalSampleToWorldSpace(normalMapSample, v_Normal, v_Tangent,v_Binormal));\n		#else\n			normal = normalize(v_Normal);\n		#endif\n	#endif\n	\n	#if defined(DIRECTIONLIGHT)||defined(POINTLIGHT)||defined(SPOTLIGHT)||defined(GLOWINGEDGE)\n		vec3 viewDir= normalize(v_ViewDir);\n		vec3 diffuse = vec3(0.0);\n		vec3 specular= vec3(0.0);\n		vec3 dif,spe;\n		#ifdef SPECULARMAP\n			vec3 gloss=texture2D(u_SpecularTexture, v_Texcoord0).rgb;\n		#else\n			#ifdef DIFFUSEMAP\n				vec3 gloss=vec3(difTexColor.a);\n			#else\n				vec3 gloss=vec3(1.0);\n			#endif\n		#endif\n	#endif\n\n	\n	#ifdef DIRECTIONLIGHT\n		LayaAirBlinnPhongDiectionLight(u_MaterialSpecular,u_Shininess,normal,gloss,viewDir,u_DirectionLight,dif,spe);\n		diffuse+=dif;\n		specular+=spe;\n	#endif\n \n	#ifdef POINTLIGHT\n		LayaAirBlinnPhongPointLight(v_PositionWorld,u_MaterialSpecular,u_Shininess,normal,gloss,viewDir,u_PointLight,dif,spe);\n		diffuse+=dif;\n		specular+=spe;\n	#endif\n\n	#ifdef SPOTLIGHT\n		LayaAirBlinnPhongSpotLight(v_PositionWorld,u_MaterialSpecular,u_Shininess,normal,gloss,viewDir,u_SpotLight,dif,spe);\n		diffuse+=dif;\n		specular+=spe;\n	#endif\n\n	\n	vec3 finalDiffuse;\n	#ifdef LIGHTMAP\n		finalDiffuse=texture2D(u_LightMap, v_LightMapUV).rgb*2.0;\n		//float exponent = texture2D(u_LightMap, v_LightMapUV).a;\n		//finalDiffuse = texture2D(u_LightMap, v_LightMapUV).rgb;\n		//float ratio = pow(2.0, exponent * 255.0 - (128.0 + 8.0));\n		//finalDiffuse = finalDiffuse * 255.0 * ratio;	\n		//finalDiffuse = sqrt(finalDiffuse);\n	#else\n		finalDiffuse=vec3(0.0);\n	#endif\n\n	#if defined(DIRECTIONLIGHT)||defined(POINTLIGHT)||defined(SPOTLIGHT)\n		finalDiffuse+=diffuse;\n	#endif\n\n	#ifdef RECEIVESHADOW\n		float shadowValue = 1.0;\n		#ifdef SHADOWMAP_PSSM3\n			shadowValue = getShadowPSSM3( u_shadowMap1,u_shadowMap2,u_shadowMap3,u_lightShadowVP,u_shadowPSSMDistance,u_shadowPCFoffset,v_PositionWorld,v_posViewZ,0.001);\n		#endif\n		#ifdef SHADOWMAP_PSSM2\n			shadowValue = getShadowPSSM2( u_shadowMap1,u_shadowMap2,u_lightShadowVP,u_shadowPSSMDistance,u_shadowPCFoffset,v_PositionWorld,v_posViewZ,0.001);\n		#endif \n		#ifdef SHADOWMAP_PSSM1\n			shadowValue = getShadowPSSM1( u_shadowMap1,v_lightMVPPos,u_shadowPSSMDistance,u_shadowPCFoffset,v_posViewZ,0.001);\n		#endif\n		gl_FragColor =vec4(mainColor.rgb*(u_AmbientColor + finalDiffuse)*shadowValue,mainColor.a);\n	#else\n		gl_FragColor =vec4(mainColor.rgb*(u_AmbientColor + finalDiffuse),mainColor.a);\n	#endif\n\n	#if defined(DIRECTIONLIGHT)||defined(POINTLIGHT)||defined(SPOTLIGHT)\n		#ifdef RECEIVESHADOW\n			gl_FragColor.rgb+=specular*shadowValue;\n		#else\n			gl_FragColor.rgb+=specular;\n		#endif\n	#endif\n	\n	#ifdef GLOWINGEDGE\n		float Rim = 1.0 - max(0.0,dot(viewDir, normal));\n		vec3 Emissive = 2.0 * u_DirectionLight.Color * u_GlowingEdgeColor.rgb * pow(Rim,5.0);\n		gl_FragColor.rgb += Emissive;\n	#endif\n\n	#ifdef REFLECTMAP\n		vec3 incident = -viewDir;\n		vec3 reflectionVector = reflect(incident,normal);\n		vec3 reflectionColor  = textureCube(u_ReflectTexture,reflectionVector).rgb;\n		gl_FragColor.rgb += u_MaterialReflect*reflectionColor;\n	#endif\n	  \n	#ifdef FOG\n		float lerpFact=clamp((1.0/gl_FragCoord.w-u_FogStart)/u_FogRange,0.0,1.0);\n		#ifdef ADDTIVEFOG\n			gl_FragColor.rgb=mix(gl_FragColor.rgb,vec3(0.0,0.0,0.0),lerpFact);\n		#else\n			gl_FragColor.rgb=mix(gl_FragColor.rgb,u_FogColor,lerpFact);\n		#endif\n	#endif\n}\n\nvoid main()\n{\n	#ifdef CASTSHADOW		\n		main_castShadow();\n	#else\n	  main_normal();\n	#endif  \n}\n\n";
+		ps="#ifdef HIGHPRECISION\n	precision highp float;\n#else\n	precision mediump float;\n#endif\n\n#include \"Lighting.glsl\";\n\nuniform vec4 u_DiffuseColor;\n\n#ifdef COLOR\n	varying vec4 v_Color;\n#endif\n\n#if defined(DIRECTIONLIGHT)||defined(POINTLIGHT)||defined(SPOTLIGHT)||defined(REFLECTMAP)\n	varying vec3 v_ViewDir; \n#endif\n\n#ifdef ALPHATEST\n	uniform float u_AlphaTestValue;\n#endif\n\n#ifdef DIFFUSEMAP\n	uniform sampler2D u_DiffuseTexture;\n#endif\n\n#ifdef REFLECTMAP\n	uniform samplerCube u_ReflectTexture;\n	uniform vec3 u_MaterialReflect;\n#endif\n\n#if defined(DIFFUSEMAP)||((defined(DIRECTIONLIGHT)||defined(POINTLIGHT)||defined(SPOTLIGHT))&&(defined(SPECULARMAP)||defined(NORMALMAP)))\n	varying vec2 v_Texcoord0;\n#endif\n\n#ifdef LIGHTMAP\n	varying vec2 v_LightMapUV;\n	uniform sampler2D u_LightMap;\n#endif\n\n#if defined(DIRECTIONLIGHT)||defined(POINTLIGHT)||defined(SPOTLIGHT)\n	uniform vec3 u_MaterialSpecular;\n	uniform float u_Shininess;\n	#ifdef SPECULARMAP \n		uniform sampler2D u_SpecularTexture;\n	#endif\n#endif\n\n#ifdef FOG\n	uniform float u_FogStart;\n	uniform float u_FogRange;\n	#ifdef ADDTIVEFOG\n	#else\n		uniform vec3 u_FogColor;\n	#endif\n#endif\n\n\n#if defined(DIRECTIONLIGHT)||defined(POINTLIGHT)||defined(SPOTLIGHT)||defined(REFLECTMAP)\n	varying vec3 v_Normal;\n#endif\n\n#if (defined(DIRECTIONLIGHT)||defined(POINTLIGHT)||defined(SPOTLIGHT))&&defined(NORMALMAP)\n	uniform sampler2D u_NormalTexture;\n	varying vec3 v_Tangent;\n	varying vec3 v_Binormal;\n#endif\n\n#ifdef DIRECTIONLIGHT\n	uniform DirectionLight u_DirectionLight;\n#endif\n\n#ifdef POINTLIGHT\n	uniform PointLight u_PointLight;\n#endif\n\n#ifdef SPOTLIGHT\n	uniform SpotLight u_SpotLight;\n#endif\n\nuniform vec3 u_AmbientColor;\n\n\n#if defined(POINTLIGHT)||defined(SPOTLIGHT)||defined(REFLECTMAP)||defined(RECEIVESHADOW)\n	varying vec3 v_PositionWorld;\n#endif\n\n#include \"ShadowHelper.glsl\"\nvarying float v_posViewZ;\n#ifdef RECEIVESHADOW\n	#if defined(SHADOWMAP_PSSM2)||defined(SHADOWMAP_PSSM3)\n		uniform mat4 u_lightShadowVP[4];\n	#endif\n	#ifdef SHADOWMAP_PSSM1 \n		varying vec4 v_lightMVPPos;\n	#endif\n#endif\n\nvoid main_castShadow()\n{\n	//gl_FragColor=vec4(v_posViewZ,0.0,0.0,1.0);\n	gl_FragColor=packDepth(v_posViewZ);\n	#if defined(DIFFUSEMAP)&&defined(ALPHATEST)\n		float alpha = texture2D(u_DiffuseTexture,v_Texcoord0).w;\n		if( alpha < u_AlphaTestValue )\n		{\n			discard;\n		}\n	#endif\n}\nvoid main_normal()\n{\n	vec4 mainColor=u_DiffuseColor;\n	#ifdef DIFFUSEMAP\n		vec4 difTexColor=texture2D(u_DiffuseTexture, v_Texcoord0);\n		mainColor=mainColor*difTexColor;\n	#endif \n	#ifdef COLOR\n		mainColor=mainColor*v_Color;\n	#endif \n    \n	#ifdef ALPHATEST\n		if(mainColor.a<u_AlphaTestValue)\n			discard;\n	#endif\n  \n	#if defined(DIRECTIONLIGHT)||defined(POINTLIGHT)||defined(SPOTLIGHT)||defined(REFLECTMAP)\n		vec3 normal;\n		#if (defined(DIRECTIONLIGHT)||defined(POINTLIGHT)||defined(SPOTLIGHT))&&defined(NORMALMAP)\n			vec3 normalMapSample = texture2D(u_NormalTexture, v_Texcoord0).rgb;\n			normal = normalize(NormalSampleToWorldSpace(normalMapSample, v_Normal, v_Tangent,v_Binormal));\n		#else\n			normal = normalize(v_Normal);\n		#endif\n	#endif\n	\n	#if defined(DIRECTIONLIGHT)||defined(POINTLIGHT)||defined(SPOTLIGHT)\n		vec3 viewDir= normalize(v_ViewDir);\n		vec3 diffuse = vec3(0.0);\n		vec3 specular= vec3(0.0);\n		vec3 dif,spe;\n		#ifdef SPECULARMAP\n			vec3 gloss=texture2D(u_SpecularTexture, v_Texcoord0).rgb;\n		#else\n			#ifdef DIFFUSEMAP\n				vec3 gloss=vec3(difTexColor.a);\n			#else\n				vec3 gloss=vec3(1.0);\n			#endif\n		#endif\n	#endif\n\n	\n	#ifdef DIRECTIONLIGHT\n		LayaAirBlinnPhongDiectionLight(u_MaterialSpecular,u_Shininess,normal,gloss,viewDir,u_DirectionLight,dif,spe);\n		diffuse+=dif;\n		specular+=spe;\n	#endif\n \n	#ifdef POINTLIGHT\n		LayaAirBlinnPhongPointLight(v_PositionWorld,u_MaterialSpecular,u_Shininess,normal,gloss,viewDir,u_PointLight,dif,spe);\n		diffuse+=dif;\n		specular+=spe;\n	#endif\n\n	#ifdef SPOTLIGHT\n		LayaAirBlinnPhongSpotLight(v_PositionWorld,u_MaterialSpecular,u_Shininess,normal,gloss,viewDir,u_SpotLight,dif,spe);\n		diffuse+=dif;\n		specular+=spe;\n	#endif\n\n	\n	vec3 finalDiffuse;\n	#ifdef LIGHTMAP\n		finalDiffuse=texture2D(u_LightMap, v_LightMapUV).rgb*2.0;\n		//float exponent = texture2D(u_LightMap, v_LightMapUV).a;\n		//finalDiffuse = texture2D(u_LightMap, v_LightMapUV).rgb;\n		//float ratio = pow(2.0, exponent * 255.0 - (128.0 + 8.0));\n		//finalDiffuse = finalDiffuse * 255.0 * ratio;	\n		//finalDiffuse = sqrt(finalDiffuse);\n	#else\n		finalDiffuse=vec3(0.0);\n	#endif\n\n	#if defined(DIRECTIONLIGHT)||defined(POINTLIGHT)||defined(SPOTLIGHT)\n		finalDiffuse+=diffuse;\n	#endif\n\n	#ifdef RECEIVESHADOW\n		float shadowValue = 1.0;\n		#ifdef SHADOWMAP_PSSM3\n			shadowValue = getShadowPSSM3( u_shadowMap1,u_shadowMap2,u_shadowMap3,u_lightShadowVP,u_shadowPSSMDistance,u_shadowPCFoffset,v_PositionWorld,v_posViewZ,0.001);\n		#endif\n		#ifdef SHADOWMAP_PSSM2\n			shadowValue = getShadowPSSM2( u_shadowMap1,u_shadowMap2,u_lightShadowVP,u_shadowPSSMDistance,u_shadowPCFoffset,v_PositionWorld,v_posViewZ,0.001);\n		#endif \n		#ifdef SHADOWMAP_PSSM1\n			shadowValue = getShadowPSSM1( u_shadowMap1,v_lightMVPPos,u_shadowPSSMDistance,u_shadowPCFoffset,v_posViewZ,0.001);\n		#endif\n		gl_FragColor =vec4(mainColor.rgb*(u_AmbientColor + finalDiffuse)*shadowValue,mainColor.a);\n	#else\n		gl_FragColor =vec4(mainColor.rgb*(u_AmbientColor + finalDiffuse),mainColor.a);\n	#endif\n	\n\n	#if defined(DIRECTIONLIGHT)||defined(POINTLIGHT)||defined(SPOTLIGHT)\n		#ifdef RECEIVESHADOW\n			gl_FragColor.rgb+=specular*shadowValue;\n		#else\n			gl_FragColor.rgb+=specular;\n		#endif\n	#endif\n\n\n	#ifdef REFLECTMAP\n		vec3 incident = -viewDir;\n		vec3 reflectionVector = reflect(incident,normal);\n		vec3 reflectionColor  = textureCube(u_ReflectTexture,reflectionVector).rgb;\n		gl_FragColor.rgb += u_MaterialReflect*reflectionColor;\n	#endif\n	  \n	#ifdef FOG\n		float lerpFact=clamp((1.0/gl_FragCoord.w-u_FogStart)/u_FogRange,0.0,1.0);\n		#ifdef ADDTIVEFOG\n			gl_FragColor.rgb=mix(gl_FragColor.rgb,vec3(0.0,0.0,0.0),lerpFact);\n		#else\n			gl_FragColor.rgb=mix(gl_FragColor.rgb,u_FogColor,lerpFact);\n		#endif\n	#endif\n}\n\nvoid main()\n{\n	#ifdef CASTSHADOW		\n		main_castShadow();\n	#else\n	  main_normal();\n	#endif  \n}\n\n";
 		var shaderCompile=ShaderCompile3D.add(BLINNPHONG,vs,ps,attributeMap,uniformMap);
 		BlinnPhongMaterial.SHADERDEFINE_DIFFUSEMAP=shaderCompile.registerMaterialDefine("DIFFUSEMAP");
 		BlinnPhongMaterial.SHADERDEFINE_NORMALMAP=shaderCompile.registerMaterialDefine("NORMALMAP");
@@ -15273,7 +15721,6 @@ var ShaderInit3D=(function(){
 		BlinnPhongMaterial.SHADERDEFINE_REFLECTMAP=shaderCompile.registerMaterialDefine("REFLECTMAP");
 		BlinnPhongMaterial.SHADERDEFINE_TILINGOFFSET=shaderCompile.registerMaterialDefine("TILINGOFFSET");
 		BlinnPhongMaterial.SHADERDEFINE_ADDTIVEFOG=shaderCompile.registerMaterialDefine("ADDTIVEFOG");
-		BlinnPhongMaterial.SHADERDEFINE_GLOWINGEDGE=shaderCompile.registerMaterialDefine("GLOWINGEDGE");
 		attributeMap={
 			'a_Position':/*laya.d3.graphics.VertexElementUsage.POSITION0*/0,
 			'a_Color':/*laya.d3.graphics.VertexElementUsage.COLOR0*/1,
@@ -15834,7 +16281,7 @@ var ShaderInit3D=(function(){
 		ps="#ifdef HIGHPRECISION\n	precision highp float;\n#else\n	precision mediump float;\n#endif\n\n#include \"LightHelper.glsl\";\n\n#if defined(DIRECTIONLIGHT)||defined(POINTLIGHT)||defined(SPOTLIGHT)||defined(FOG)\n	uniform vec3 u_MaterialDiffuse;\n	uniform vec4 u_MaterialSpecular;\n	uniform vec3 u_CameraPos;\n	varying vec3 v_Normal;\n	varying vec3 v_PositionWorld;\n#endif\n\n#ifdef FOG\n	uniform float u_FogStart;\n	uniform float u_FogRange;\n	uniform vec3 u_FogColor;\n#endif\n\n\n#ifdef DIRECTIONLIGHT\n	uniform DirectionLight u_DirectionLight;\n#endif\n\n#ifdef POINTLIGHT\n	uniform PointLight u_PointLight;\n#endif\n\n#ifdef SPOTLIGHT\n	uniform SpotLight u_SpotLight;\n#endif\n\nuniform vec3 u_AmbientColor;\n\n#include \"ShadowHelper.glsl\"\n#ifdef RECEIVESHADOW\n	#if defined(SHADOWMAP_PSSM2)||defined(SHADOWMAP_PSSM3)\n	uniform mat4 u_lightShadowVP[4];\n	#endif\n	#ifdef SHADOWMAP_PSSM1 \n	varying vec4 v_lightMVPPos;\n	#endif\n#endif\nvarying float v_posViewZ;\n\n\nuniform sampler2D u_SplatAlphaTexture;\n\nuniform sampler2D u_DiffuseTexture1;\nuniform sampler2D u_DiffuseTexture2;\nuniform sampler2D u_DiffuseTexture3;\nuniform sampler2D u_DiffuseTexture4;\nuniform sampler2D u_DiffuseTexture5;\n\nuniform vec4 u_DiffuseScaleOffset1;\nuniform vec4 u_DiffuseScaleOffset2;\nuniform vec4 u_DiffuseScaleOffset3;\nuniform vec4 u_DiffuseScaleOffset4;\nuniform vec4 u_DiffuseScaleOffset5;\n\nvarying vec2 v_Texcoord0;\n\nuniform vec3 u_MaterialAmbient;\nuniform vec4 u_MaterialAlbedo;\n\n#ifdef LIGHTMAP\n	uniform sampler2D u_LightMap;\n	varying vec2 v_LightMapUV;\n#endif\n\nvoid main()\n{\n	#ifdef ExtendTerrain_DETAIL_NUM1\n		vec4 splatAlpha = texture2D(u_SplatAlphaTexture, v_Texcoord0);\n		vec4 color1 = texture2D(u_DiffuseTexture1, v_Texcoord0 * u_DiffuseScaleOffset1.xy);\n		gl_FragColor.xyz = color1.xyz * splatAlpha.r;\n	#endif\n	#ifdef ExtendTerrain_DETAIL_NUM2\n		vec4 splatAlpha = texture2D(u_SplatAlphaTexture, v_Texcoord0);\n		vec4 color1 = texture2D(u_DiffuseTexture1, v_Texcoord0 * u_DiffuseScaleOffset1.xy);\n		vec4 color2 = texture2D(u_DiffuseTexture2, v_Texcoord0 * u_DiffuseScaleOffset2.xy);\n		gl_FragColor.xyz = color1.xyz * splatAlpha.r + color2.xyz * (1.0 - splatAlpha.r);\n	#endif\n	#ifdef ExtendTerrain_DETAIL_NUM3\n		vec4 splatAlpha = texture2D(u_SplatAlphaTexture, v_Texcoord0);\n		vec4 color1 = texture2D(u_DiffuseTexture1, v_Texcoord0 * u_DiffuseScaleOffset1.xy);\n		vec4 color2 = texture2D(u_DiffuseTexture2, v_Texcoord0 * u_DiffuseScaleOffset2.xy);\n		vec4 color3 = texture2D(u_DiffuseTexture3, v_Texcoord0 * u_DiffuseScaleOffset3.xy);\n		gl_FragColor.xyz = color1.xyz * splatAlpha.r  + color2.xyz * splatAlpha.g + color3.xyz * (1.0 - splatAlpha.r - splatAlpha.g);\n	#endif\n	#ifdef ExtendTerrain_DETAIL_NUM4\n		vec4 splatAlpha = texture2D(u_SplatAlphaTexture, v_Texcoord0);\n		vec4 color1 = texture2D(u_DiffuseTexture1, v_Texcoord0 * u_DiffuseScaleOffset1.xy);\n		vec4 color2 = texture2D(u_DiffuseTexture2, v_Texcoord0 * u_DiffuseScaleOffset2.xy);\n		vec4 color3 = texture2D(u_DiffuseTexture3, v_Texcoord0 * u_DiffuseScaleOffset3.xy);\n		vec4 color4 = texture2D(u_DiffuseTexture4, v_Texcoord0 * u_DiffuseScaleOffset4.xy);\n		gl_FragColor.xyz = color1.xyz * splatAlpha.r  + color2.xyz * splatAlpha.g + color3.xyz * splatAlpha.b + color4.xyz * (1.0 - splatAlpha.r - splatAlpha.g - splatAlpha.b);\n	#endif\n	#ifdef ExtendTerrain_DETAIL_NUM5\n		vec4 splatAlpha = texture2D(u_SplatAlphaTexture, v_Texcoord0);\n		vec4 color1 = texture2D(u_DiffuseTexture1, v_Texcoord0 * u_DiffuseScaleOffset1.xy);\n		vec4 color2 = texture2D(u_DiffuseTexture2, v_Texcoord0 * u_DiffuseScaleOffset2.xy);\n		vec4 color3 = texture2D(u_DiffuseTexture3, v_Texcoord0 * u_DiffuseScaleOffset3.xy);\n		vec4 color4 = texture2D(u_DiffuseTexture4, v_Texcoord0 * u_DiffuseScaleOffset4.xy);\n		vec4 color5 = texture2D(u_DiffuseTexture5, v_Texcoord0 * u_DiffuseScaleOffset5.xy);\n		gl_FragColor.xyz = color1.xyz * splatAlpha.r  + color2.xyz * splatAlpha.g + color3.xyz * splatAlpha.b + color4.xyz * splatAlpha.a + color5.xyz * (1.0 - splatAlpha.r - splatAlpha.g - splatAlpha.b - splatAlpha.a);\n	#endif\n		gl_FragColor.w = splatAlpha.a;\n		\n#if defined(DIRECTIONLIGHT)||defined(POINTLIGHT)||defined(SPOTLIGHT)\n    vec3 normal = v_Normal;\n	vec3 diffuse = vec3(0.0);\n	vec3 ambient = vec3(0.0);\n	vec3 specular= vec3(0.0);\n	vec3 dif, amb, spe;\n#endif\n\n#if defined(DIRECTIONLIGHT)||defined(POINTLIGHT)||defined(SPOTLIGHT)||defined(FOG)\n	vec3 toEye;\n	#ifdef FOG\n		toEye=u_CameraPos-v_PositionWorld;\n		float toEyeLength=length(toEye);\n		toEye/=toEyeLength;\n	#else\n		toEye=normalize(u_CameraPos-v_PositionWorld);\n	#endif\n#endif\n\n#ifdef DIRECTIONLIGHT\n	computeDirectionLight(u_MaterialDiffuse,u_MaterialAmbient,u_MaterialSpecular,u_DirectionLight,u_AmbientColor,normal,toEye, dif, amb, spe);\n	diffuse+=dif;\n	ambient+=amb;\n	specular+=spe;\n#endif\n \n#ifdef POINTLIGHT\n	computePointLight(u_MaterialDiffuse,u_MaterialAmbient,u_MaterialSpecular,u_PointLight,u_AmbientColor,v_PositionWorld,normal,toEye, dif, amb, spe);\n	diffuse+=dif;\n	ambient+=amb;\n	specular+=spe;\n#endif\n\n#ifdef SPOTLIGHT\n	ComputeSpotLight(u_MaterialDiffuse,u_MaterialAmbient,u_MaterialSpecular,u_SpotLight,u_AmbientColor,v_PositionWorld,normal,toEye, dif, amb, spe);\n	diffuse+=dif;\n	ambient+=amb;\n	specular+=spe;\n#endif\n\n#ifdef RECEIVESHADOW\n	float shadowValue = 1.0;\n	#ifdef SHADOWMAP_PSSM3\n		shadowValue = getShadowPSSM3( u_shadowMap1,u_shadowMap2,u_shadowMap3,u_lightShadowVP,u_shadowPSSMDistance,u_shadowPCFoffset,v_PositionWorld,v_posViewZ,0.001);\n	#endif\n	#ifdef SHADOWMAP_PSSM2\n		shadowValue = getShadowPSSM2( u_shadowMap1,u_shadowMap2,u_lightShadowVP,u_shadowPSSMDistance,u_shadowPCFoffset,v_PositionWorld,v_posViewZ,0.001);\n	#endif \n	#ifdef SHADOWMAP_PSSM1\n		shadowValue = getShadowPSSM1( u_shadowMap1,v_lightMVPPos,u_shadowPSSMDistance,u_shadowPCFoffset,v_posViewZ,0.001);\n	#endif\n#endif\n\n#ifdef LIGHTMAP\n	#if defined(DIRECTIONLIGHT)||defined(POINTLIGHT)||defined(SPOTLIGHT)\n		gl_FragColor.rgb=gl_FragColor.rgb*(u_MaterialAmbient + texture2D(u_LightMap, v_LightMapUV).rgb);\n	#else\n		#if defined(RECEIVESHADOW)		\n			gl_FragColor.rgb=gl_FragColor.rgb*(u_MaterialAmbient+texture2D(u_LightMap, v_LightMapUV).rgb * shadowValue);\n			//vec3 tColor= u_MaterialAmbient + texture2D(u_LightMap, v_LightMapUV).rgb * shadowValue + mix(vec3(0.15,0.15,0.15),vec3(0.0),shadowValue);\n			//gl_FragColor.rgb*=tColor;\n		#else\n			gl_FragColor.rgb=gl_FragColor.rgb*(u_MaterialAmbient + texture2D(u_LightMap, v_LightMapUV).rgb);\n		#endif\n	#endif\n#endif\n\ngl_FragColor=gl_FragColor*u_MaterialAlbedo;\n\n#if defined(DIRECTIONLIGHT)||defined(POINTLIGHT)||defined(SPOTLIGHT)\n	#ifdef RECEIVESHADOW\n		gl_FragColor = vec4( gl_FragColor.rgb*(ambient + diffuse*shadowValue) + specular * shadowValue,gl_FragColor.a);\n	#else\n		gl_FragColor =vec4( gl_FragColor.rgb*(ambient + diffuse) + specular, gl_FragColor.a);\n	#endif\n#endif\n\n#ifdef FOG\n	float lerpFact=clamp((toEyeLength-u_FogStart)/u_FogRange,0.0,1.0);\n	gl_FragColor.rgb=mix(gl_FragColor.rgb,u_FogColor,lerpFact);\n#endif\n}\n\n\n\n\n\n";
 		var extendTerrainCompile3D=ShaderCompile3D.add(extendTerrainShader,vs,ps,attributeMap,uniformMap);
 		extendTerrainCompile3D.addSpriteDefines(RenderableSprite3D.shaderDefines);
-		extendTerrainCompile3D.addSpriteDefines(ExtendTerrainMaterial.shaderDefines);
+		extendTerrainCompile3D.addMaterialDefines(ExtendTerrainMaterial.shaderDefines);
 		attributeMap={
 			'a_Position' :/*laya.d3.graphics.VertexElementUsage.POSITION0*/0,
 			'a_OffsetVector':/*laya.d3.graphics.VertexElementUsage.OFFSETVECTOR*/41,
@@ -17473,7 +17920,6 @@ var Utils3D=(function(){
 				case "TrailSprite3D":
 					node=new TrailSprite3D();
 					break ;
-				case "LineSprite3D":
 					break ;
 				case "Terrain":
 					node=new Terrain();
@@ -17857,20 +18303,8 @@ var Utils3D=(function(){
 		Utils3D.matrix4x4MultiplyFFF(left.elements,right,out.elements);
 	}
 
-	Utils3D._tempVector3_0=new Vector3();
-	Utils3D._tempVector3_1=new Vector3();
-	Utils3D._tempVector3_2=new Vector3();
-	Utils3D._tempVector3_3=new Vector3();
-	Utils3D._tempVector3_4=new Vector3();
-	Utils3D._tempVector3_5=new Vector3();
-	Utils3D._tempVector3_6=new Vector3();
-	Utils3D._tempArray4_0=new Float32Array(4);
-	Utils3D._tempArray16_0=new Float32Array(16);
-	Utils3D._tempArray16_1=new Float32Array(16);
-	Utils3D._tempArray16_2=new Float32Array(16);
-	Utils3D._tempArray16_3=new Float32Array(16);
 	__static(Utils3D,
-	['_typeToFunO',function(){return this._typeToFunO={"INT16":"writeInt16","SHORT":"writeInt16","UINT16":"writeUint16","UINT32":"writeUint32","FLOAT32":"writeFloat32","INT":"writeInt32","UINT":"writeUint32","BYTE":"writeByte","STRING":"writeUTFString"};}
+	['_typeToFunO',function(){return this._typeToFunO={"INT16":"writeInt16","SHORT":"writeInt16","UINT16":"writeUint16","UINT32":"writeUint32","FLOAT32":"writeFloat32","INT":"writeInt32","UINT":"writeUint32","BYTE":"writeByte","STRING":"writeUTFString"};},'_tempVector3_0',function(){return this._tempVector3_0=new Vector3();},'_tempVector3_1',function(){return this._tempVector3_1=new Vector3();},'_tempVector3_2',function(){return this._tempVector3_2=new Vector3();},'_tempVector3_3',function(){return this._tempVector3_3=new Vector3();},'_tempVector3_4',function(){return this._tempVector3_4=new Vector3();},'_tempVector3_5',function(){return this._tempVector3_5=new Vector3();},'_tempVector3_6',function(){return this._tempVector3_6=new Vector3();},'_tempArray4_0',function(){return this._tempArray4_0=new Float32Array(4);},'_tempArray16_0',function(){return this._tempArray16_0=new Float32Array(16);},'_tempArray16_1',function(){return this._tempArray16_1=new Float32Array(16);},'_tempArray16_2',function(){return this._tempArray16_2=new Float32Array(16);},'_tempArray16_3',function(){return this._tempArray16_3=new Float32Array(16);}
 	]);
 	return Utils3D;
 })()
@@ -18313,7 +18747,8 @@ var Laya3D=(function(){
 			var version=lmatData.version;
 			if (version){
 				switch (version){
-					case "LAYAMATERIAL:01":;
+					case "LAYAMATERIAL:01":
+					case "LAYAMATERIAL:02":;
 						var textures=lmatData.props.textures;
 						for (var i=0,n=textures.length;i < n;i++){
 							var tex=textures[i];
@@ -18457,6 +18892,7 @@ var Laya3D=(function(){
 		Laya.init(width,height);
 		Layer.__init__();
 		Physics.__init__();
+		ExtendTerrainMaterial.__init__();
 		ShaderInit3D.__init__();
 		MeshSprite3D.__init__();
 		AnimationNode.__init__();
@@ -22654,7 +23090,7 @@ var BaseMaterial=(function(_super){
 		this._disablePublicShaderDefine=0;
 		this._shaderValues=new ValusArray();
 		this._values=[];
-		this.renderQueue=/*laya.d3.core.render.RenderQueue.OPAQUE*/1;
+		this.renderQueue=/*CLASS CONST:laya.d3.core.material.BaseMaterial.RENDERQUEUE_OPAQUE*/2000;
 		this._alphaTest=false;
 		this.cull=2;
 		this.blend=0;
@@ -23006,6 +23442,69 @@ var BaseMaterial=(function(_super){
 						this._addShaderDefine(define);
 					}
 					break ;
+					case "cull":
+					case "blend":
+					case "srcBlend":
+					case "dstBlend":
+					case "depthWrite":
+					this[key]=props[key];
+					break ;
+					case "renderQueue":;
+					var queue=props[key];
+					switch (queue){
+						case 1:
+							this.renderQueue=2000;
+							break ;
+						case 2:
+							this.renderQueue=3000;
+							break ;
+						default :
+						}
+					break ;
+					default :
+					this[key]=props[key];
+				}
+			}
+			break ;
+			case "LAYAMATERIAL:02":
+			props=jsonData.props;
+			for (key in props){
+				switch (key){
+					case "vectors":
+						vectors=props[key];
+						for (i=0,n=vectors.length;i < n;i++){
+							vector=vectors[i];
+							vectorValue=vector.value;
+						switch (vectorValue.length){
+							case 2:
+								this[vector.name]=new Vector2(vectorValue[0],vectorValue[1]);
+								break ;
+							case 3:
+								this[vector.name]=new Vector3(vectorValue[0],vectorValue[1],vectorValue[2]);
+								break ;
+							case 4:
+								this[vector.name]=new Vector4(vectorValue[0],vectorValue[1],vectorValue[2],vectorValue[3]);
+								break ;
+							default :
+								throw new Error("BaseMaterial:unkonwn color length.");
+							}
+					}
+					break ;
+					case "textures":
+					textures=props[key];
+					for (i=0,n=textures.length;i < n;i++){
+						texture=textures[i];
+						path=texture.path;
+						(path)&& (this[texture.name]=Loader.getRes(textureMap[path]));
+					}
+					break ;
+					case "defines":
+					defineNames=props[key];
+					for (i=0,n=defineNames.length;i < n;i++){
+						define=this._shaderCompile.getMaterialDefineByName(defineNames[i]);
+						this._addShaderDefine(define);
+					}
+					break ;
 					default :
 					this[key]=props[key];
 				}
@@ -23183,6 +23682,9 @@ var BaseMaterial=(function(_super){
 		BaseMaterial.SHADERDEFINE_ALPHATEST=BaseMaterial.shaderDefines.registerDefine("ALPHATEST");
 	}
 
+	BaseMaterial.RENDERQUEUE_OPAQUE=2000;
+	BaseMaterial.RENDERQUEUE_ALPHATEST=2450;
+	BaseMaterial.RENDERQUEUE_TRANSPARENT=3000;
 	BaseMaterial.CULL_NONE=0;
 	BaseMaterial.CULL_FRONT=1;
 	BaseMaterial.CULL_BACK=2;
@@ -23247,8 +23749,13 @@ var BaseTexture=(function(_super){
 		this._format=0;
 		/**@private */
 		this._source=null;
+		/**@private */
+		this._conchTexture=null;
+		/**@private */
+		this._wrapModeU=0;
+		/**@private */
+		this._wrapModeV=0;
 		BaseTexture.__super.call(this);
-		this._conchTexture
 		this._repeat=true;
 		this.mipmap=true;
 		this.minFifter=-1;
@@ -23262,13 +23769,6 @@ var BaseTexture=(function(_super){
 	*/
 	__getset(0,__proto,'width',function(){
 		return this._width;
-	});
-
-	/**
-	*纹理格式
-	*/
-	__getset(0,__proto,'format',function(){
-		return this._format;
 	});
 
 	/**
@@ -23320,10 +23820,24 @@ var BaseTexture=(function(_super){
 	});
 
 	/**
+	*获取纹理纵向循环模式。
+	*/
+	__getset(0,__proto,'wrapModeV',function(){
+		return this._wrapModeV;
+	});
+
+	/**
 	*获取尺寸。
 	*/
 	__getset(0,__proto,'size',function(){
 		return this._size;
+	});
+
+	/**
+	*获取纹理横向循环模式。
+	*/
+	__getset(0,__proto,'wrapModeU',function(){
+		return this._wrapModeU;
 	});
 
 	/**
@@ -23357,6 +23871,13 @@ var BaseTexture=(function(_super){
 	});
 
 	/**
+	*纹理格式
+	*/
+	__getset(0,__proto,'format',function(){
+		return this._format;
+	});
+
+	/**
 	*获取纹理资源。
 	*/
 	__getset(0,__proto,'source',function(){
@@ -23371,6 +23892,8 @@ var BaseTexture=(function(_super){
 		return SolidColorTexture2D.grayTexture;
 	});
 
+	BaseTexture.WARPMODE_REPEAT=0;
+	BaseTexture.WARPMODE_CLAMP=1;
 	return BaseTexture;
 })(Resource)
 
@@ -23861,6 +24384,8 @@ var Animator=(function(_super){
 		//this._cacheSpriteToNodesMap=null;
 		/**@private */
 		//this._cacheFullFrames=null;
+		/**@private */
+		//this._linkSpritesData=null;
 		/**@private */
 		//this._avatarNodeMap=null;
 		/**@private */
@@ -24486,6 +25011,11 @@ var Animator=(function(_super){
 		if (this.clip){
 			animator.clip=this.clip;
 		}
+		if (this._linkSpritesData){
+			animator._linkSpritesData={};
+			for (var k in this._linkSpritesData)
+			animator._linkSpritesData[k]=this._linkSpritesData[k].slice();
+		}
 	}
 
 	/**
@@ -24648,21 +25178,41 @@ var Animator=(function(_super){
 	}
 
 	/**
+	*@private
+	*/
+	__proto._getLinkSpritePath=function(sprite3D,path){
+		path.unshift(sprite3D.name);
+		var parent=sprite3D._parent;
+		if (parent._hierarchyAnimator===this)
+			this._getLinkSpritePath(parent,path);
+		else
+		path.shift();
+	}
+
+	/**
 	*关联精灵节点到Avatar节点,此Animator必须有Avatar文件。
 	*@param nodeName 关联节点的名字。
 	*@param sprite3D 精灵节点。
 	*@return 是否关联成功。
 	*/
 	__proto.linkSprite3DToAvatarNode=function(nodeName,sprite3D){
-		if (this._avatar){
-			var node=this._avatarNodeMap[nodeName];
-			if (node){
-				sprite3D._isLinkSpriteToAnimationNode(this,node,true);
-				return true;
+		if (sprite3D._hierarchyAnimator===this){
+			if (this._avatar){
+				var node=this._avatarNodeMap[nodeName];
+				if (node){this._linkSpritesData=this._linkSpritesData|| {};
+					var path=[];
+					this._getLinkSpritePath(sprite3D,path);
+					this._linkSpritesData[nodeName]=path;
+					sprite3D._isLinkSpriteToAnimationNode(this,node,true);
+					return true;
+					}else {
+					return false;
+				}
 				}else {
 				return false;
 			}
 			}else {
+			throw("Animator:sprite3D must belong to this Animator");
 			return false;
 		}
 	}
@@ -29142,7 +29692,10 @@ var Scene=(function(_super){
 	*@return 渲染队列。
 	*/
 	__proto.getRenderQueue=function(index){
-		return this._quenes[index] || (this._quenes[index]=new RenderQueue(this));
+		if (index < 3000)
+			return this._quenes[1] || (this._quenes[1]=new RenderQueue(this));
+		else
+		return this._quenes[2] || (this._quenes[2]=new RenderQueue(this));
 	}
 
 	/**
@@ -29303,7 +29856,7 @@ var Scene=(function(_super){
 		this._typeComponentsIndices=null;
 		this._components=null;
 		Loader.clearRes(this.url);
-		(this.loaded)||(Laya3D._cancelLoadByUrl(this.url));
+		(this.loaded)|| (Laya3D._cancelLoadByUrl(this.url));
 	}
 
 	/**
@@ -30251,11 +30804,8 @@ var Sprite3D=(function(_super){
 		destSprite3D._$P=this._$P;
 		destSprite3D.active=this._active;
 		var destLocalPosition=destSprite3D.transform.localPosition;
-		var destPosition=destSprite3D.transform.position;
 		this.transform.localPosition.cloneTo(destLocalPosition);
-		this.transform.position.cloneTo(destPosition);
 		destSprite3D.transform.localPosition=destLocalPosition;
-		destSprite3D.transform.position=destPosition;
 		var destLocalRotation=destSprite3D.transform.localRotation;
 		this.transform.localRotation.cloneTo(destLocalRotation);
 		destSprite3D.transform.localRotation=destLocalRotation;
@@ -30270,6 +30820,25 @@ var Sprite3D=(function(_super){
 		}
 		for (i=0,n=this._childs.length;i < n;i++)
 		destSprite3D.addChild(this._childs[i].clone());
+		var destAnimator=destSprite3D.getComponentByType(Animator);
+		if (destAnimator){
+			var destLinkSpritesData=destAnimator._linkSpritesData;
+			if (destLinkSpritesData){
+				for (var k in destLinkSpritesData){
+					var path=destLinkSpritesData[k];
+					var sp=destSprite3D;
+					for (var j=0,m=path.length;j < m;j++){
+						sp=sp.getChildByName(path[j]);
+						if (!sp)
+							break ;
+					}
+					if (sp){
+						var node=destAnimator._avatarNodeMap[k];
+						sp._isLinkSpriteToAnimationNode(destAnimator,node,true);
+					}
+				}
+			}
+		}
 	}
 
 	/**
@@ -31090,7 +31659,6 @@ var BlinnPhongMaterial=(function(_super){
 		this._setColor(11,new Vector4(1.0,1.0,0.0,0.0));
 		this._enableLighting=true;
 		this.renderMode=0;
-		this._setColor(12,new Vector4(1.0,1.0,1.0,1.0));
 	}
 
 	__class(BlinnPhongMaterial,'laya.d3.core.material.BlinnPhongMaterial',_super);
@@ -31127,7 +31695,7 @@ var BlinnPhongMaterial=(function(_super){
 	__getset(0,__proto,'renderMode',null,function(value){
 		switch (value){
 			case 0:
-				this.renderQueue=/*laya.d3.core.render.RenderQueue.OPAQUE*/1;
+				this.renderQueue=/*laya.d3.core.material.BaseMaterial.RENDERQUEUE_OPAQUE*/2000;
 				this.depthWrite=true;
 				this.cull=2;
 				this.blend=0;
@@ -31139,13 +31707,13 @@ var BlinnPhongMaterial=(function(_super){
 				this.depthWrite=true;
 				this.cull=2;
 				this.blend=0;
-				this.renderQueue=/*laya.d3.core.render.RenderQueue.OPAQUE*/1;
+				this.renderQueue=/*laya.d3.core.material.BaseMaterial.RENDERQUEUE_OPAQUE*/2000;
 				this.alphaTest=true;
 				this.depthTest=0x0201;
 				this._removeShaderDefine(BlinnPhongMaterial.SHADERDEFINE_ADDTIVEFOG);
 				break ;
 			case 2:
-				this.renderQueue=/*laya.d3.core.render.RenderQueue.TRANSPARENT*/2;
+				this.renderQueue=/*laya.d3.core.material.BaseMaterial.RENDERQUEUE_TRANSPARENT*/3000;
 				this.depthWrite=false;
 				this.cull=2;
 				this.blend=1;
@@ -31156,7 +31724,7 @@ var BlinnPhongMaterial=(function(_super){
 				this._removeShaderDefine(BlinnPhongMaterial.SHADERDEFINE_ADDTIVEFOG);
 				break ;
 			case 3:
-				this.renderQueue=/*laya.d3.core.render.RenderQueue.TRANSPARENT*/2;
+				this.renderQueue=/*laya.d3.core.material.BaseMaterial.RENDERQUEUE_TRANSPARENT*/3000;
 				this.depthWrite=false;
 				this.cull=2;
 				this.blend=1;
@@ -31364,31 +31932,6 @@ var BlinnPhongMaterial=(function(_super){
 		}
 	});
 
-	/**
-	*设置边缘颜色。
-	*@param value 边缘颜色。
-	*/
-	/**
-	*获取边缘颜色。
-	*@return value 边缘颜色。
-	*/
-	__getset(0,__proto,'glowingEdgeColor',function(){
-		return this._getColor(12);
-		},function(value){
-		this._setColor(12,value);
-	});
-
-	/**
-	*设置是否开启边缘光照。
-	*@param value 是否开启边缘光照。
-	*/
-	__getset(0,__proto,'enableGlowingEdge',null,function(value){
-		if (value)
-			this._addShaderDefine(laya.d3.core.material.BlinnPhongMaterial.SHADERDEFINE_GLOWINGEDGE);
-		else
-		this._removeShaderDefine(laya.d3.core.material.BlinnPhongMaterial.SHADERDEFINE_GLOWINGEDGE);
-	});
-
 	BlinnPhongMaterial.__init__=function(){
 		BlinnPhongMaterial.SHADERDEFINE_DIFFUSEMAP=BlinnPhongMaterial.shaderDefines.registerDefine("DIFFUSEMAP");
 		BlinnPhongMaterial.SHADERDEFINE_NORMALMAP=BlinnPhongMaterial.shaderDefines.registerDefine("NORMALMAP");
@@ -31396,7 +31939,6 @@ var BlinnPhongMaterial=(function(_super){
 		BlinnPhongMaterial.SHADERDEFINE_REFLECTMAP=BlinnPhongMaterial.shaderDefines.registerDefine("REFLECTMAP");
 		BlinnPhongMaterial.SHADERDEFINE_TILINGOFFSET=BlinnPhongMaterial.shaderDefines.registerDefine("TILINGOFFSET");
 		BlinnPhongMaterial.SHADERDEFINE_ADDTIVEFOG=BlinnPhongMaterial.shaderDefines.registerDefine("ADDTIVEFOG");
-		BlinnPhongMaterial.SHADERDEFINE_GLOWINGEDGE=BlinnPhongMaterial.shaderDefines.registerDefine("GLOWINGEDGE");
 	}
 
 	BlinnPhongMaterial.load=function(url){
@@ -31415,7 +31957,6 @@ var BlinnPhongMaterial=(function(_super){
 	BlinnPhongMaterial.SHADERDEFINE_REFLECTMAP=0;
 	BlinnPhongMaterial.SHADERDEFINE_TILINGOFFSET=0;
 	BlinnPhongMaterial.SHADERDEFINE_ADDTIVEFOG=0;
-	BlinnPhongMaterial.SHADERDEFINE_GLOWINGEDGE=0;
 	BlinnPhongMaterial.ALBEDOTEXTURE=1;
 	BlinnPhongMaterial.NORMALTEXTURE=2;
 	BlinnPhongMaterial.SPECULARTEXTURE=3;
@@ -31426,7 +31967,6 @@ var BlinnPhongMaterial=(function(_super){
 	BlinnPhongMaterial.SHININESS=9;
 	BlinnPhongMaterial.MATERIALREFLECT=10;
 	BlinnPhongMaterial.TILINGOFFSET=11;
-	BlinnPhongMaterial.GLOWINGEDGECOLOR=12;
 	__static(BlinnPhongMaterial,
 	['defaultMaterial',function(){return this.defaultMaterial=new BlinnPhongMaterial();},'shaderDefines',function(){return this.shaderDefines=new ShaderDefines$1(BaseMaterial.shaderDefines);}
 	]);
@@ -31534,14 +32074,14 @@ var ExtendTerrainMaterial=(function(_super){
 	__getset(0,__proto,'renderMode',null,function(value){
 		switch (value){
 			case 1:
-				this.renderQueue=/*laya.d3.core.render.RenderQueue.OPAQUE*/1;
+				this.renderQueue=/*laya.d3.core.material.BaseMaterial.RENDERQUEUE_OPAQUE*/2000;
 				this.depthWrite=true;
 				this.cull=2;
 				this.blend=0;
 				this.depthTest=0x0201;
 				break ;
 			case 2:
-				this.renderQueue=/*laya.d3.core.render.RenderQueue.OPAQUE*/1;
+				this.renderQueue=/*laya.d3.core.material.BaseMaterial.RENDERQUEUE_OPAQUE*/2000;
 				this.depthWrite=false;
 				this.cull=2;
 				this.blend=1;
@@ -31750,19 +32290,19 @@ var GlitterMaterial=(function(_super){
 	__getset(0,__proto,'renderMode',null,function(value){
 		switch (value){
 			case 1:
-				this.renderQueue=/*laya.d3.core.render.RenderQueue.OPAQUE*/1;
+				this.renderQueue=/*laya.d3.core.material.BaseMaterial.RENDERQUEUE_OPAQUE*/2000;
 				this.depthWrite=true;
 				this.cull=2;
 				this.blend=0;
 				break ;
 			case 2:
-				this.renderQueue=/*laya.d3.core.render.RenderQueue.OPAQUE*/1;
+				this.renderQueue=/*laya.d3.core.material.BaseMaterial.RENDERQUEUE_OPAQUE*/2000;
 				this.depthWrite=true;
 				this.cull=0;
 				this.blend=0;
 				break ;
 			case 13:
-				this.renderQueue=/*laya.d3.core.render.RenderQueue.TRANSPARENT*/2;
+				this.renderQueue=/*laya.d3.core.material.BaseMaterial.RENDERQUEUE_TRANSPARENT*/3000;
 				this.depthWrite=true;
 				this.cull=2;
 				this.blend=1;
@@ -31770,7 +32310,7 @@ var GlitterMaterial=(function(_super){
 				this.dstBlend=0x0303;
 				break ;
 			case 14:
-				this.renderQueue=/*laya.d3.core.render.RenderQueue.TRANSPARENT*/2;
+				this.renderQueue=/*laya.d3.core.material.BaseMaterial.RENDERQUEUE_TRANSPARENT*/3000;
 				this.depthWrite=true;
 				this.cull=0;
 				this.blend=1;
@@ -31778,7 +32318,7 @@ var GlitterMaterial=(function(_super){
 				this.dstBlend=0x0303;
 				break ;
 			case 15:
-				this.renderQueue=/*laya.d3.core.render.RenderQueue.TRANSPARENT*/2;
+				this.renderQueue=/*laya.d3.core.material.BaseMaterial.RENDERQUEUE_TRANSPARENT*/3000;
 				this.depthWrite=true;
 				this.cull=2;
 				this.blend=1;
@@ -31786,7 +32326,7 @@ var GlitterMaterial=(function(_super){
 				this.dstBlend=1;
 				break ;
 			case 16:
-				this.renderQueue=/*laya.d3.core.render.RenderQueue.TRANSPARENT*/2;
+				this.renderQueue=/*laya.d3.core.material.BaseMaterial.RENDERQUEUE_TRANSPARENT*/3000;
 				this.depthWrite=true;
 				this.cull=0;
 				this.blend=1;
@@ -31794,7 +32334,7 @@ var GlitterMaterial=(function(_super){
 				this.dstBlend=1;
 				break ;
 			case 5:
-				this.renderQueue=/*laya.d3.core.render.RenderQueue.TRANSPARENT*/2;
+				this.renderQueue=/*laya.d3.core.material.BaseMaterial.RENDERQUEUE_TRANSPARENT*/3000;
 				this.depthWrite=false;
 				this.cull=2;
 				this.blend=1;
@@ -31802,7 +32342,7 @@ var GlitterMaterial=(function(_super){
 				this.dstBlend=0x0303;
 				break ;
 			case 6:
-				this.renderQueue=/*laya.d3.core.render.RenderQueue.TRANSPARENT*/2;
+				this.renderQueue=/*laya.d3.core.material.BaseMaterial.RENDERQUEUE_TRANSPARENT*/3000;
 				this.depthWrite=false;
 				this.cull=0;
 				this.blend=1;
@@ -31810,7 +32350,7 @@ var GlitterMaterial=(function(_super){
 				this.dstBlend=0x0303;
 				break ;
 			case 7:
-				this.renderQueue=/*laya.d3.core.render.RenderQueue.TRANSPARENT*/2;
+				this.renderQueue=/*laya.d3.core.material.BaseMaterial.RENDERQUEUE_TRANSPARENT*/3000;
 				this.depthWrite=false;
 				this.cull=2;
 				this.blend=1;
@@ -31818,7 +32358,7 @@ var GlitterMaterial=(function(_super){
 				this.dstBlend=1;
 				break ;
 			case 8:
-				this.renderQueue=/*laya.d3.core.render.RenderQueue.TRANSPARENT*/2;
+				this.renderQueue=/*laya.d3.core.material.BaseMaterial.RENDERQUEUE_TRANSPARENT*/3000;
 				this.depthWrite=false;
 				this.cull=0;
 				this.blend=1;
@@ -31826,7 +32366,7 @@ var GlitterMaterial=(function(_super){
 				this.dstBlend=1;
 				break ;
 			case 9:
-				this.renderQueue=/*laya.d3.core.render.RenderQueue.TRANSPARENT*/2;
+				this.renderQueue=/*laya.d3.core.material.BaseMaterial.RENDERQUEUE_TRANSPARENT*/3000;
 				this.depthTest=0x0201;
 				this.cull=2;
 				this.blend=1;
@@ -31834,7 +32374,7 @@ var GlitterMaterial=(function(_super){
 				this.dstBlend=0x0303;
 				break ;
 			case 10:
-				this.renderQueue=/*laya.d3.core.render.RenderQueue.TRANSPARENT*/2;
+				this.renderQueue=/*laya.d3.core.material.BaseMaterial.RENDERQUEUE_TRANSPARENT*/3000;
 				this.depthTest=0x0201;
 				this.cull=0;
 				this.blend=1;
@@ -31842,7 +32382,7 @@ var GlitterMaterial=(function(_super){
 				this.dstBlend=0x0303;
 				break ;
 			case 11:
-				this.renderQueue=/*laya.d3.core.render.RenderQueue.TRANSPARENT*/2;
+				this.renderQueue=/*laya.d3.core.material.BaseMaterial.RENDERQUEUE_TRANSPARENT*/3000;
 				this.depthTest=0x0201;
 				this.cull=2;
 				this.blend=1;
@@ -31850,7 +32390,7 @@ var GlitterMaterial=(function(_super){
 				this.dstBlend=1;
 				break ;
 			case 12:
-				this.renderQueue=/*laya.d3.core.render.RenderQueue.TRANSPARENT*/2;
+				this.renderQueue=/*laya.d3.core.material.BaseMaterial.RENDERQUEUE_TRANSPARENT*/3000;
 				this.depthTest=0x0201;
 				this.cull=0;
 				this.blend=1;
@@ -32110,14 +32650,14 @@ var PBRMaterial=(function(_super){
 	__getset(0,__proto,'renderMode',null,function(value){
 		switch (value){
 			case 1:
-				this.renderQueue=/*laya.d3.core.render.RenderQueue.OPAQUE*/1;
+				this.renderQueue=/*laya.d3.core.material.BaseMaterial.RENDERQUEUE_OPAQUE*/2000;
 				this.depthWrite=true;
 				this.cull=2;
 				this.blend=0;
 				this.alphaTest=false;
 				break ;
 			case 2:
-				this.renderQueue=/*laya.d3.core.render.RenderQueue.OPAQUE*/1;
+				this.renderQueue=/*laya.d3.core.material.BaseMaterial.RENDERQUEUE_OPAQUE*/2000;
 				this.depthWrite=true;
 				this.cull=0;
 				this.blend=0;
@@ -32127,10 +32667,10 @@ var PBRMaterial=(function(_super){
 				this.depthWrite=true;
 				this.cull=2;
 				this.blend=0;
-				this.renderQueue=/*laya.d3.core.render.RenderQueue.OPAQUE*/1;
+				this.renderQueue=/*laya.d3.core.material.BaseMaterial.RENDERQUEUE_OPAQUE*/2000;
 				break ;
 			case 13:
-				this.renderQueue=/*laya.d3.core.render.RenderQueue.TRANSPARENT*/2;
+				this.renderQueue=/*laya.d3.core.material.BaseMaterial.RENDERQUEUE_TRANSPARENT*/3000;
 				this.depthWrite=true;
 				this.cull=2;
 				this.blend=1;
@@ -33019,7 +33559,7 @@ var StandardMaterial=(function(_super){
 	__getset(0,__proto,'renderMode',null,function(value){
 		switch (value){
 			case 1:
-				this.renderQueue=/*laya.d3.core.render.RenderQueue.OPAQUE*/1;
+				this.renderQueue=/*laya.d3.core.material.BaseMaterial.RENDERQUEUE_OPAQUE*/2000;
 				this.depthWrite=true;
 				this.cull=2;
 				this.blend=0;
@@ -33027,7 +33567,7 @@ var StandardMaterial=(function(_super){
 				this._removeShaderDefine(StandardMaterial.SHADERDEFINE_ADDTIVEFOG);
 				break ;
 			case 2:
-				this.renderQueue=/*laya.d3.core.render.RenderQueue.OPAQUE*/1;
+				this.renderQueue=/*laya.d3.core.material.BaseMaterial.RENDERQUEUE_OPAQUE*/2000;
 				this.depthWrite=true;
 				this.cull=0;
 				this.blend=0;
@@ -33038,12 +33578,12 @@ var StandardMaterial=(function(_super){
 				this.depthWrite=true;
 				this.cull=2;
 				this.blend=0;
-				this.renderQueue=/*laya.d3.core.render.RenderQueue.OPAQUE*/1;
+				this.renderQueue=/*laya.d3.core.material.BaseMaterial.RENDERQUEUE_OPAQUE*/2000;
 				this.alphaTest=true;
 				this._removeShaderDefine(StandardMaterial.SHADERDEFINE_ADDTIVEFOG);
 				break ;
 			case 4:
-				this.renderQueue=/*laya.d3.core.render.RenderQueue.OPAQUE*/1;
+				this.renderQueue=/*laya.d3.core.material.BaseMaterial.RENDERQUEUE_OPAQUE*/2000;
 				this.depthWrite=true;
 				this.cull=0;
 				this.blend=0;
@@ -33051,7 +33591,7 @@ var StandardMaterial=(function(_super){
 				this._removeShaderDefine(StandardMaterial.SHADERDEFINE_ADDTIVEFOG);
 				break ;
 			case 13:
-				this.renderQueue=/*laya.d3.core.render.RenderQueue.TRANSPARENT*/2;
+				this.renderQueue=/*laya.d3.core.material.BaseMaterial.RENDERQUEUE_TRANSPARENT*/3000;
 				this.depthWrite=true;
 				this.cull=2;
 				this.blend=1;
@@ -33061,7 +33601,7 @@ var StandardMaterial=(function(_super){
 				this._removeShaderDefine(StandardMaterial.SHADERDEFINE_ADDTIVEFOG);
 				break ;
 			case 14:
-				this.renderQueue=/*laya.d3.core.render.RenderQueue.TRANSPARENT*/2;
+				this.renderQueue=/*laya.d3.core.material.BaseMaterial.RENDERQUEUE_TRANSPARENT*/3000;
 				this.depthWrite=true;
 				this.cull=0;
 				this.blend=1;
@@ -33071,7 +33611,7 @@ var StandardMaterial=(function(_super){
 				this._removeShaderDefine(StandardMaterial.SHADERDEFINE_ADDTIVEFOG);
 				break ;
 			case 15:
-				this.renderQueue=/*laya.d3.core.render.RenderQueue.TRANSPARENT*/2;
+				this.renderQueue=/*laya.d3.core.material.BaseMaterial.RENDERQUEUE_TRANSPARENT*/3000;
 				this.depthWrite=true;
 				this.cull=2;
 				this.blend=1;
@@ -33081,7 +33621,7 @@ var StandardMaterial=(function(_super){
 				this._addShaderDefine(StandardMaterial.SHADERDEFINE_ADDTIVEFOG);
 				break ;
 			case 16:
-				this.renderQueue=/*laya.d3.core.render.RenderQueue.TRANSPARENT*/2;
+				this.renderQueue=/*laya.d3.core.material.BaseMaterial.RENDERQUEUE_TRANSPARENT*/3000;
 				this.depthWrite=true;
 				this.cull=0;
 				this.blend=1;
@@ -33091,7 +33631,7 @@ var StandardMaterial=(function(_super){
 				this._addShaderDefine(StandardMaterial.SHADERDEFINE_ADDTIVEFOG);
 				break ;
 			case 5:
-				this.renderQueue=/*laya.d3.core.render.RenderQueue.TRANSPARENT*/2;
+				this.renderQueue=/*laya.d3.core.material.BaseMaterial.RENDERQUEUE_TRANSPARENT*/3000;
 				this.depthWrite=false;
 				this.cull=2;
 				this.blend=1;
@@ -33101,7 +33641,7 @@ var StandardMaterial=(function(_super){
 				this._removeShaderDefine(StandardMaterial.SHADERDEFINE_ADDTIVEFOG);
 				break ;
 			case 6:
-				this.renderQueue=/*laya.d3.core.render.RenderQueue.TRANSPARENT*/2;
+				this.renderQueue=/*laya.d3.core.material.BaseMaterial.RENDERQUEUE_TRANSPARENT*/3000;
 				this.depthWrite=false;
 				this.cull=0;
 				this.blend=1;
@@ -33111,7 +33651,7 @@ var StandardMaterial=(function(_super){
 				this._removeShaderDefine(StandardMaterial.SHADERDEFINE_ADDTIVEFOG);
 				break ;
 			case 7:
-				this.renderQueue=/*laya.d3.core.render.RenderQueue.TRANSPARENT*/2;
+				this.renderQueue=/*laya.d3.core.material.BaseMaterial.RENDERQUEUE_TRANSPARENT*/3000;
 				this.depthWrite=false;
 				this.cull=2;
 				this.blend=1;
@@ -33121,7 +33661,7 @@ var StandardMaterial=(function(_super){
 				this._addShaderDefine(StandardMaterial.SHADERDEFINE_ADDTIVEFOG);
 				break ;
 			case 8:
-				this.renderQueue=/*laya.d3.core.render.RenderQueue.TRANSPARENT*/2;
+				this.renderQueue=/*laya.d3.core.material.BaseMaterial.RENDERQUEUE_TRANSPARENT*/3000;
 				this.depthWrite=false;
 				this.cull=0;
 				this.blend=1;
@@ -33131,7 +33671,7 @@ var StandardMaterial=(function(_super){
 				this._addShaderDefine(StandardMaterial.SHADERDEFINE_ADDTIVEFOG);
 				break ;
 			case 9:
-				this.renderQueue=/*laya.d3.core.render.RenderQueue.TRANSPARENT*/2;
+				this.renderQueue=/*laya.d3.core.material.BaseMaterial.RENDERQUEUE_TRANSPARENT*/3000;
 				this.depthTest=0x0201;
 				this.cull=2;
 				this.blend=1;
@@ -33141,7 +33681,7 @@ var StandardMaterial=(function(_super){
 				this._removeShaderDefine(StandardMaterial.SHADERDEFINE_ADDTIVEFOG);
 				break ;
 			case 10:
-				this.renderQueue=/*laya.d3.core.render.RenderQueue.TRANSPARENT*/2;
+				this.renderQueue=/*laya.d3.core.material.BaseMaterial.RENDERQUEUE_TRANSPARENT*/3000;
 				this.depthTest=0x0201;
 				this.cull=0;
 				this.blend=1;
@@ -33151,7 +33691,7 @@ var StandardMaterial=(function(_super){
 				this._removeShaderDefine(StandardMaterial.SHADERDEFINE_ADDTIVEFOG);
 				break ;
 			case 11:
-				this.renderQueue=/*laya.d3.core.render.RenderQueue.TRANSPARENT*/2;
+				this.renderQueue=/*laya.d3.core.material.BaseMaterial.RENDERQUEUE_TRANSPARENT*/3000;
 				this.depthTest=0x0201;
 				this.cull=2;
 				this.blend=1;
@@ -33161,7 +33701,7 @@ var StandardMaterial=(function(_super){
 				this._addShaderDefine(StandardMaterial.SHADERDEFINE_ADDTIVEFOG);
 				break ;
 			case 12:
-				this.renderQueue=/*laya.d3.core.render.RenderQueue.TRANSPARENT*/2;
+				this.renderQueue=/*laya.d3.core.material.BaseMaterial.RENDERQUEUE_TRANSPARENT*/3000;
 				this.depthTest=0x0201;
 				this.cull=0;
 				this.blend=1;
@@ -33551,14 +34091,14 @@ var TerrainMaterial=(function(_super){
 	__getset(0,__proto,'renderMode',null,function(value){
 		switch (value){
 			case 1:
-				this.renderQueue=/*laya.d3.core.render.RenderQueue.OPAQUE*/1;
+				this.renderQueue=/*laya.d3.core.material.BaseMaterial.RENDERQUEUE_OPAQUE*/2000;
 				this.depthWrite=true;
 				this.cull=2;
 				this.blend=0;
 				this.depthTest=0x0201;
 				break ;
 			case 2:
-				this.renderQueue=/*laya.d3.core.render.RenderQueue.OPAQUE*/1;
+				this.renderQueue=/*laya.d3.core.material.BaseMaterial.RENDERQUEUE_OPAQUE*/2000;
 				this.depthWrite=false;
 				this.cull=2;
 				this.blend=1;
@@ -33883,14 +34423,14 @@ var WaterMaterial=(function(_super){
 	__getset(0,__proto,'renderMode',null,function(value){
 		switch (value){
 			case 1:
-				this.renderQueue=/*laya.d3.core.render.RenderQueue.OPAQUE*/1;
+				this.renderQueue=/*laya.d3.core.material.BaseMaterial.RENDERQUEUE_OPAQUE*/2000;
 				this.depthWrite=true;
 				this.cull=2;
 				this.blend=0;
 				this.alphaTest=false;
 				break ;
 			case 2:
-				this.renderQueue=/*laya.d3.core.render.RenderQueue.OPAQUE*/1;
+				this.renderQueue=/*laya.d3.core.material.BaseMaterial.RENDERQUEUE_OPAQUE*/2000;
 				this.depthWrite=true;
 				this.cull=0;
 				this.blend=0;
@@ -33900,10 +34440,10 @@ var WaterMaterial=(function(_super){
 				this.depthWrite=true;
 				this.cull=2;
 				this.blend=0;
-				this.renderQueue=/*laya.d3.core.render.RenderQueue.OPAQUE*/1;
+				this.renderQueue=/*laya.d3.core.material.BaseMaterial.RENDERQUEUE_OPAQUE*/2000;
 				break ;
 			case 13:
-				this.renderQueue=/*laya.d3.core.render.RenderQueue.TRANSPARENT*/2;
+				this.renderQueue=/*laya.d3.core.material.BaseMaterial.RENDERQUEUE_TRANSPARENT*/3000;
 				this.depthWrite=true;
 				this.cull=2;
 				this.blend=1;
@@ -34276,7 +34816,7 @@ var ShurikenParticleMaterial=(function(_super){
 	__getset(0,__proto,'renderMode',null,function(value){
 		switch (value){
 			case 1:
-				this.renderQueue=/*laya.d3.core.render.RenderQueue.OPAQUE*/1;
+				this.renderQueue=/*laya.d3.core.material.BaseMaterial.RENDERQUEUE_OPAQUE*/2000;
 				this.depthWrite=true;
 				this.cull=2;
 				this.blend=0;
@@ -34284,7 +34824,7 @@ var ShurikenParticleMaterial=(function(_super){
 				this._removeShaderDefine(ShurikenParticleMaterial.SHADERDEFINE_ADDTIVEFOG);
 				break ;
 			case 2:
-				this.renderQueue=/*laya.d3.core.render.RenderQueue.OPAQUE*/1;
+				this.renderQueue=/*laya.d3.core.material.BaseMaterial.RENDERQUEUE_OPAQUE*/2000;
 				this.depthWrite=true;
 				this.cull=0;
 				this.blend=0;
@@ -34295,12 +34835,12 @@ var ShurikenParticleMaterial=(function(_super){
 				this.depthWrite=true;
 				this.cull=2;
 				this.blend=0;
-				this.renderQueue=/*laya.d3.core.render.RenderQueue.OPAQUE*/1;
+				this.renderQueue=/*laya.d3.core.material.BaseMaterial.RENDERQUEUE_OPAQUE*/2000;
 				this.alphaTest=true;
 				this._removeShaderDefine(ShurikenParticleMaterial.SHADERDEFINE_ADDTIVEFOG);
 				break ;
 			case 4:
-				this.renderQueue=/*laya.d3.core.render.RenderQueue.OPAQUE*/1;
+				this.renderQueue=/*laya.d3.core.material.BaseMaterial.RENDERQUEUE_OPAQUE*/2000;
 				this.depthWrite=true;
 				this.cull=0;
 				this.blend=0;
@@ -34308,7 +34848,7 @@ var ShurikenParticleMaterial=(function(_super){
 				this._removeShaderDefine(ShurikenParticleMaterial.SHADERDEFINE_ADDTIVEFOG);
 				break ;
 			case 13:
-				this.renderQueue=/*laya.d3.core.render.RenderQueue.TRANSPARENT*/2;
+				this.renderQueue=/*laya.d3.core.material.BaseMaterial.RENDERQUEUE_TRANSPARENT*/3000;
 				this.depthWrite=true;
 				this.cull=2;
 				this.blend=1;
@@ -34318,7 +34858,7 @@ var ShurikenParticleMaterial=(function(_super){
 				this._removeShaderDefine(ShurikenParticleMaterial.SHADERDEFINE_ADDTIVEFOG);
 				break ;
 			case 14:
-				this.renderQueue=/*laya.d3.core.render.RenderQueue.TRANSPARENT*/2;
+				this.renderQueue=/*laya.d3.core.material.BaseMaterial.RENDERQUEUE_TRANSPARENT*/3000;
 				this.depthWrite=true;
 				this.cull=0;
 				this.blend=1;
@@ -34328,7 +34868,7 @@ var ShurikenParticleMaterial=(function(_super){
 				this._removeShaderDefine(ShurikenParticleMaterial.SHADERDEFINE_ADDTIVEFOG);
 				break ;
 			case 15:
-				this.renderQueue=/*laya.d3.core.render.RenderQueue.TRANSPARENT*/2;
+				this.renderQueue=/*laya.d3.core.material.BaseMaterial.RENDERQUEUE_TRANSPARENT*/3000;
 				this.depthWrite=true;
 				this.cull=2;
 				this.blend=1;
@@ -34338,7 +34878,7 @@ var ShurikenParticleMaterial=(function(_super){
 				this._addShaderDefine(ShurikenParticleMaterial.SHADERDEFINE_ADDTIVEFOG);
 				break ;
 			case 16:
-				this.renderQueue=/*laya.d3.core.render.RenderQueue.TRANSPARENT*/2;
+				this.renderQueue=/*laya.d3.core.material.BaseMaterial.RENDERQUEUE_TRANSPARENT*/3000;
 				this.depthWrite=true;
 				this.cull=0;
 				this.blend=1;
@@ -34348,7 +34888,7 @@ var ShurikenParticleMaterial=(function(_super){
 				this._addShaderDefine(ShurikenParticleMaterial.SHADERDEFINE_ADDTIVEFOG);
 				break ;
 			case 5:
-				this.renderQueue=/*laya.d3.core.render.RenderQueue.TRANSPARENT*/2;
+				this.renderQueue=/*laya.d3.core.material.BaseMaterial.RENDERQUEUE_TRANSPARENT*/3000;
 				this.depthWrite=false;
 				this.cull=2;
 				this.blend=1;
@@ -34358,7 +34898,7 @@ var ShurikenParticleMaterial=(function(_super){
 				this._removeShaderDefine(ShurikenParticleMaterial.SHADERDEFINE_ADDTIVEFOG);
 				break ;
 			case 6:
-				this.renderQueue=/*laya.d3.core.render.RenderQueue.TRANSPARENT*/2;
+				this.renderQueue=/*laya.d3.core.material.BaseMaterial.RENDERQUEUE_TRANSPARENT*/3000;
 				this.depthWrite=false;
 				this.cull=0;
 				this.blend=1;
@@ -34368,7 +34908,7 @@ var ShurikenParticleMaterial=(function(_super){
 				this._removeShaderDefine(ShurikenParticleMaterial.SHADERDEFINE_ADDTIVEFOG);
 				break ;
 			case 7:
-				this.renderQueue=/*laya.d3.core.render.RenderQueue.TRANSPARENT*/2;
+				this.renderQueue=/*laya.d3.core.material.BaseMaterial.RENDERQUEUE_TRANSPARENT*/3000;
 				this.depthWrite=false;
 				this.cull=2;
 				this.blend=1;
@@ -34378,7 +34918,7 @@ var ShurikenParticleMaterial=(function(_super){
 				this._addShaderDefine(ShurikenParticleMaterial.SHADERDEFINE_ADDTIVEFOG);
 				break ;
 			case 8:
-				this.renderQueue=/*laya.d3.core.render.RenderQueue.TRANSPARENT*/2;
+				this.renderQueue=/*laya.d3.core.material.BaseMaterial.RENDERQUEUE_TRANSPARENT*/3000;
 				this.depthWrite=false;
 				this.cull=0;
 				this.blend=1;
@@ -34388,7 +34928,7 @@ var ShurikenParticleMaterial=(function(_super){
 				this._addShaderDefine(ShurikenParticleMaterial.SHADERDEFINE_ADDTIVEFOG);
 				break ;
 			case 9:
-				this.renderQueue=/*laya.d3.core.render.RenderQueue.TRANSPARENT*/2;
+				this.renderQueue=/*laya.d3.core.material.BaseMaterial.RENDERQUEUE_TRANSPARENT*/3000;
 				this.depthTest=0x0201;
 				this.cull=2;
 				this.blend=1;
@@ -34398,7 +34938,7 @@ var ShurikenParticleMaterial=(function(_super){
 				this._removeShaderDefine(ShurikenParticleMaterial.SHADERDEFINE_ADDTIVEFOG);
 				break ;
 			case 10:
-				this.renderQueue=/*laya.d3.core.render.RenderQueue.TRANSPARENT*/2;
+				this.renderQueue=/*laya.d3.core.material.BaseMaterial.RENDERQUEUE_TRANSPARENT*/3000;
 				this.depthTest=0x0201;
 				this.cull=0;
 				this.blend=1;
@@ -34408,7 +34948,7 @@ var ShurikenParticleMaterial=(function(_super){
 				this._removeShaderDefine(ShurikenParticleMaterial.SHADERDEFINE_ADDTIVEFOG);
 				break ;
 			case 11:
-				this.renderQueue=/*laya.d3.core.render.RenderQueue.TRANSPARENT*/2;
+				this.renderQueue=/*laya.d3.core.material.BaseMaterial.RENDERQUEUE_TRANSPARENT*/3000;
 				this.depthTest=0x0201;
 				this.cull=2;
 				this.blend=1;
@@ -34418,7 +34958,7 @@ var ShurikenParticleMaterial=(function(_super){
 				this._addShaderDefine(ShurikenParticleMaterial.SHADERDEFINE_ADDTIVEFOG);
 				break ;
 			case 12:
-				this.renderQueue=/*laya.d3.core.render.RenderQueue.TRANSPARENT*/2;
+				this.renderQueue=/*laya.d3.core.material.BaseMaterial.RENDERQUEUE_TRANSPARENT*/3000;
 				this.depthTest=0x0201;
 				this.cull=0;
 				this.blend=1;
@@ -36679,6 +37219,8 @@ var Texture2D=(function(_super){
 		var minFifter=this._minFifter;
 		var magFifter=this._magFifter;
 		var repeat=this._repeat ? /*laya.webgl.WebGLContext.REPEAT*/0x2901 :/*laya.webgl.WebGLContext.CLAMP_TO_EDGE*/0x812F;
+		var wrapModeU=this._wrapModeU==0 ? /*laya.webgl.WebGLContext.REPEAT*/0x2901 :/*laya.webgl.WebGLContext.CLAMP_TO_EDGE*/0x812F;
+		var wrapModeV=this._wrapModeV==0 ? /*laya.webgl.WebGLContext.REPEAT*/0x2901 :/*laya.webgl.WebGLContext.CLAMP_TO_EDGE*/0x812F;
 		var isPot=Arith.isPOT(w,h);
 		if (isPot){
 			if (this._mipmap)
@@ -36690,6 +37232,8 @@ var Texture2D=(function(_super){
 			gl.texParameteri(this._type,/*laya.webgl.WebGLContext.TEXTURE_MAG_FILTER*/0x2800,magFifter);
 			gl.texParameteri(this._type,/*laya.webgl.WebGLContext.TEXTURE_WRAP_S*/0x2802,repeat);
 			gl.texParameteri(this._type,/*laya.webgl.WebGLContext.TEXTURE_WRAP_T*/0x2803,repeat);
+			gl.texParameteri(this._type,/*laya.webgl.WebGLContext.TEXTURE_WRAP_S*/0x2802,wrapModeU);
+			gl.texParameteri(this._type,/*laya.webgl.WebGLContext.TEXTURE_WRAP_T*/0x2803,wrapModeV);
 			this._mipmap && gl.generateMipmap(this._type);
 			}else {
 			(minFifter!==-1)|| (minFifter=/*laya.webgl.WebGLContext.LINEAR*/0x2601);
@@ -36729,6 +37273,10 @@ var Texture2D=(function(_super){
 			(format!==undefined)&& (this._format=format);
 			var mipmap=params[3];
 			(mipmap!==undefined)&& (this._mipmap=mipmap);
+			var wrapModeU=params.wrapModeU;
+			(wrapModeU!==undefined)&& (this._wrapModeU=wrapModeU);
+			var wrapModeV=params.wrapModeV;
+			(wrapModeV!==undefined)&& (this._wrapModeV=wrapModeV);
 		}
 		switch (this._format){
 			case /*laya.webgl.WebGLContext.RGB*/0x1907:
@@ -40298,8 +40846,8 @@ var ShuriKenParticle3D=(function(_super){
 		var randomSeed=customProps.randomSeed;
 		(randomSeed !=null)&& (particleSystem.randomSeed[0]=randomSeed);
 		var emissionData=customProps.emission;
+		var emission=particleSystem.emission;
 		if (emissionData){
-			var emission=particleSystem.emission;
 			emission.emissionRate=emissionData.emissionRate;
 			var burstsData=emissionData.bursts;
 			if (burstsData)
