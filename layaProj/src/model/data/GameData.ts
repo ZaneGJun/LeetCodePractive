@@ -1,0 +1,4 @@
+
+interface GameData {
+    "score": number,
+}
